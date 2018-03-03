@@ -48,9 +48,11 @@ public class NewRecipe extends AppCompatActivity {
         String description = desc.getText().toString();
 
         recipeData = new RecipeData(recipeName, ingredients, description);
-        Intent intent = new Intent(this, Recipes.class);
+
+        /*Intent intent = new Intent(this, Recipes.class);
         intent.putExtra("recipeName", recipeData.getName());
         intent.putExtra("IngredientsList", recipeData.getIngredients());
-        intent.putExtra("recipeDescription", recipeData.getDescription());
+        intent.putExtra("recipeDescription", recipeData.getDescription());*/
     }
+
 }
