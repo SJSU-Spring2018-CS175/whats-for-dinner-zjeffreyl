@@ -6,7 +6,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class RecipeData{
+public class RecipeData implements Serializable{
     private String name;
     private ArrayList<String> ingredients;
     private String description;

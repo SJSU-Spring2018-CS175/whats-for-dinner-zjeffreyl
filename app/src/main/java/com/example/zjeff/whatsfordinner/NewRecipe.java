@@ -7,14 +7,35 @@ import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class NewRecipe extends AppCompatActivity {
     public RecipeData recipeData;
+    public File fileName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_recipe);
+
+        fileName = new File(getFilesDir(), "myFile.dat");
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        try {
+            FileOutputStream fos = new FileOutputStream(fileName);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(recipeData);
+            oos.close();
+        }catch(Exception exception){
+            exception.printStackTrace();
+        }
     }
 
     public void addRecipe(View view){
@@ -48,11 +69,21 @@ public class NewRecipe extends AppCompatActivity {
         String description = desc.getText().toString();
 
         recipeData = new RecipeData(recipeName, ingredients, description);
-
-        /*Intent intent = new Intent(this, Recipes.class);
+        /*String fileName = recipeName + "Recipe.dat";
+        try {
+            File f = new File(fileName);
+            FileOutputStream fos = new FileOutputStream(f);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(recipeData);
+            oos.close();
+        }catch(Exception exception){
+            exception.printStackTrace();
+        }*/
+        Intent intent = new Intent(this, Recipes.class);
         intent.putExtra("recipeName", recipeData.getName());
         intent.putExtra("IngredientsList", recipeData.getIngredients());
-        intent.putExtra("recipeDescription", recipeData.getDescription());*/
+        intent.putExtra("recipeDescription", recipeData.getDescription());
+        startActivity(intent);
     }
 
 }
