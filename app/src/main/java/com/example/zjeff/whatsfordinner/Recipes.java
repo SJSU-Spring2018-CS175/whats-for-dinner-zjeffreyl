@@ -11,18 +11,20 @@ import java.io.ObjectInputStream;
 
 public class Recipes extends AppCompatActivity {
 
+    public String name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipes);
 
         TextView textView = (TextView) findViewById(R.id.RecipeTest);
-        Intent intent = getIntent();
-        String name;
+
+        Bundle bundle = getIntent().getExtras();
+        String value = bundle.getString("recipeName");
         //Bundle bundle = getIntent().getExtras();
         //String name = bundle.getString("recipeName");
-        name = intent.getStringExtra("recipeName");
-        textView.setText(name);
+        //name = intent.getStringExtra("recipeName");
+        textView.setText(value);
         /*FileInputStream ifile = null;
         ObjectInputStream in = null;
         RecipeData data = null;

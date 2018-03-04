@@ -8,31 +8,83 @@ import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class NewRecipe extends AppCompatActivity {
-    public RecipeData recipeData;
+    public ArrayList<RecipeData> savedRecipes;
+    public ArrayList<String> savedIngredients;
     public File fileName;
 
+    //UI data
+    public ArrayList<String> newRecipeIngredients;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_recipe);
 
-        fileName = new File(getFilesDir(), "myFile.dat");
+        fileName = new File(getFilesDir(), "recipeFile");
+        newRecipeIngredients = new ArrayList<String>();
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        savedRecipes = (ArrayList<RecipeData>)bundle.getSerializable("savedRecipes");
+        savedIngredients = bundle.getStringArrayList("savedIngredients");
+        savedRecipes = new ArrayList<>();
+        savedIngredients = new ArrayList<>();
     }
 
+    //write the recipeFile
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         try {
             FileOutputStream fos = new FileOutputStream(fileName);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(recipeData);
+            oos.writeObject(savedRecipes);
+            oos.writeObject(savedIngredients);
             oos.close();
+        }catch(Exception exception){
+            exception.printStackTrace();
+        }
+    }
+
+    //write the recipeFile
+    @Override
+    protected void onStop() {
+        super.onStop();
+        try {
+            FileOutputStream fos = new FileOutputStream(fileName);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(savedRecipes);
+            oos.writeObject(savedIngredients);
+            oos.close();
+        }catch(Exception exception){
+            exception.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        try {
+            FileInputStream fileInputStream = new FileInputStream(fileName);
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+            ArrayList<RecipeData> savedRecipeList = (ArrayList<RecipeData>) objectInputStream.readObject();
+            ArrayList<String> savedIngredientsList = (ArrayList<String>) objectInputStream.readObject();
+            objectInputStream.close();
+            savedRecipes.clear();
+            for(int i = 0 ; i < savedRecipeList.size(); i ++){
+                savedRecipes.add(savedRecipeList.get(i));
+            }
+            savedIngredients.clear();
+            for(int i = 0 ; i < savedIngredientsList.size(); i ++){
+                savedIngredients.add(savedIngredientsList.get(i));
+            }
         }catch(Exception exception){
             exception.printStackTrace();
         }
@@ -65,25 +117,27 @@ public class NewRecipe extends AppCompatActivity {
         String ingredient7 = ingred7.getText().toString();
         ingredients.add(ingredient7);
 
+        newRecipeIngredients.addAll(ingredients);
+
         EditText desc = (EditText)findViewById(R.id.Instructions);
         String description = desc.getText().toString();
 
-        recipeData = new RecipeData(recipeName, ingredients, description);
-        /*String fileName = recipeName + "Recipe.dat";
-        try {
-            File f = new File(fileName);
-            FileOutputStream fos = new FileOutputStream(f);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(recipeData);
-            oos.close();
-        }catch(Exception exception){
-            exception.printStackTrace();
-        }*/
-        Intent intent = new Intent(this, Recipes.class);
-        intent.putExtra("recipeName", recipeData.getName());
-        intent.putExtra("IngredientsList", recipeData.getIngredients());
-        intent.putExtra("recipeDescription", recipeData.getDescription());
-        startActivity(intent);
+        RecipeData newRecipe = new RecipeData(recipeName, newRecipeIngredients, description);
+        savedRecipes.add(newRecipe);
+
+        for(int i = 0; i < newRecipeIngredients.size(); i++){
+            if(!savedIngredients.contains(newRecipeIngredients.get(i))){
+                savedIngredients.add(newRecipeIngredients.get(i));
+            }
+        }
+
+        ingred1.getText().clear();
+        ingred2.getText().clear();
+        ingred3.getText().clear();
+        ingred4.getText().clear();
+        ingred5.getText().clear();
+        ingred6.getText().clear();
+        ingred7.getText().clear();
     }
 
 }
