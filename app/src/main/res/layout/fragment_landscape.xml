@@ -1,0 +1,62 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.zjeff.whatsfordinner.LandscapeFragment">
+
+    <ListView
+        android:layout_width="170dp"
+        android:layout_height="match_parent"
+        android:id="@+id/recipeListLandscape"
+        />
+
+    <TextView
+        android:id="@+id/RecipeSummaryTitle"
+        android:layout_width="145dp"
+        android:layout_height="33dp"
+        android:layout_marginHorizontal="200dp"
+        android:gravity="center"
+        android:text="Recipe Title" />
+
+    <TextView
+        android:id="@+id/IngredientsHeading"
+        android:layout_width="112dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="300dp"
+        android:layout_marginStart="270dp"
+        android:layout_marginLeft="270dp"
+        android:layout_marginTop="50dp"
+        android:gravity="left"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/IngredientsList"
+        android:layout_width="173dp"
+        android:layout_height="200dp"
+        android:layout_marginHorizontal="300dp"
+        android:layout_marginStart="200dp"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="70dp"
+        android:footerDividersEnabled="true"
+        android:headerDividersEnabled="true" />
+
+    <TextView
+        android:id="@+id/DescripitionHeading"
+        android:layout_width="145dp"
+        android:layout_height="33dp"
+        android:layout_marginHorizontal="200dp"
+        android:gravity="center"
+        android:text="Recipe Title" />
+
+    <TextView
+        android:id="@+id/RecipeDescription"
+        android:layout_width="173dp"
+        android:layout_height="200dp"
+        android:layout_marginHorizontal="300dp"
+        android:layout_marginStart="200dp"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="280dp"
+        android:footerDividersEnabled="true"
+        android:headerDividersEnabled="true" />
+
+</FrameLayout>

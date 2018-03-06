@@ -1,43 +1,57 @@
 package com.example.zjeff.whatsfordinner;
 
 import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
+import java.util.ArrayList;
 
 public class Recipes extends AppCompatActivity {
 
-    public String name;
+    public File file;
+    public ArrayList<RecipeData> recipeList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        recipeList = (ArrayList<RecipeData>)bundle.getSerializable("savedRecipes");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipes);
 
-        TextView textView = (TextView) findViewById(R.id.RecipeTest);
+        Configuration config = getResources().getConfiguration();
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        Bundle bundle = getIntent().getExtras();
-        String value = bundle.getString("recipeName");
-        //Bundle bundle = getIntent().getExtras();
-        //String name = bundle.getString("recipeName");
-        //name = intent.getStringExtra("recipeName");
-        textView.setText(value);
-        /*FileInputStream ifile = null;
-        ObjectInputStream in = null;
-        RecipeData data = null;
-        try{
-            ifile = new FileInputStream("hamburgerRecipe.dat");
-            in = new ObjectInputStream(ifile);
-            data = (RecipeData)in.readObject();
-            in.close();
-        }catch(Exception exception){
-            exception.printStackTrace();
+        if(config.orientation == Configuration.ORIENTATION_LANDSCAPE){
+            LandscapeFragment landscapeFragment = new LandscapeFragment();
+            fragmentTransaction.replace(android.R.id.content, landscapeFragment);
+        }else{
+            PortraitFragment portraitFragment = new PortraitFragment();
+            fragmentTransaction.replace(android.R.id.content, portraitFragment);
         }
-        TextView textView = (TextView) findViewById(R.id.RecipeTest);
-        String name = data.getName();
-        textView.setText(name);*/
+        fragmentTransaction.commit();
     }
+        /*Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        recipeList = (ArrayList<RecipeData>)bundle.getSerializable("savedRecipes");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        TextView textView = (TextView) findViewById(R.id.RecipeTest);
+        textView.setText(recipeList.get(1).getName());
+    }*/
 }

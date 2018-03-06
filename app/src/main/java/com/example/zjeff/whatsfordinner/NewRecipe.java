@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -117,17 +118,24 @@ public class NewRecipe extends AppCompatActivity {
         String ingredient7 = ingred7.getText().toString();
         ingredients.add(ingredient7);
 
-        newRecipeIngredients.addAll(ingredients);
-
-        EditText desc = (EditText)findViewById(R.id.Instructions);
+        EditText desc = (EditText) findViewById(R.id.Instructions);
         String description = desc.getText().toString();
 
-        RecipeData newRecipe = new RecipeData(recipeName, newRecipeIngredients, description);
-        savedRecipes.add(newRecipe);
+        for(int i = 0 ; i < savedRecipes.size(); i++) {
+            if (savedRecipes.get(i).getName().equals(recipeName)) {
+                Toast.makeText(getApplicationContext(), "Recipe already exists.", Toast.LENGTH_LONG).show();
+            } else {
+                newRecipeIngredients.addAll(ingredients);
 
-        for(int i = 0; i < newRecipeIngredients.size(); i++){
-            if(!savedIngredients.contains(newRecipeIngredients.get(i))){
-                savedIngredients.add(newRecipeIngredients.get(i));
+                //add the recipe
+                RecipeData newRecipe = new RecipeData(recipeName, newRecipeIngredients, description);
+                savedRecipes.add(newRecipe);
+
+                for (int j = 0; j < newRecipeIngredients.size(); j++) {
+                    if (!savedIngredients.contains(newRecipeIngredients.get(j))) {
+                        savedIngredients.add(newRecipeIngredients.get(j));
+                    }
+                }
             }
         }
 
@@ -138,6 +146,8 @@ public class NewRecipe extends AppCompatActivity {
         ingred5.getText().clear();
         ingred6.getText().clear();
         ingred7.getText().clear();
+        desc.getText().clear();
+        name.getText().clear();
     }
 
 }
