@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.zjeff.whatsfordinner.EditRecipe">
+
+    <EditText
+        android:id="@+id/RecipeName"
+        android:layout_width="349dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:fontFamily="cursive"
+        android:inputType="text"
+        android:textColorHint="@android:color/darker_gray"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.017" />
+
+    <Button
+        android:id="@+id/AddRecipe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="cursive"
+        android:gravity="center"
+        android:onClick="editRecipe"
+        android:text="Add"
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.931"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.194"
+        tools:text="Edit Recipe" />
+
+    <TextView
+        android:id="@+id/Ingredients"
+        android:layout_width="97dp"
+        android:layout_height="27dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="cursive"
+        android:gravity="left"
+        android:text="Ingredients"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.937"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.32999998"
+        tools:text="Ingredients" />
+
+    <LinearLayout
+        android:id="@+id/IngredientList"
+        android:layout_width="168dp"
+        android:layout_height="276dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.957"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.86">
+
+        <AutoCompleteTextView
+            android:id="@+id/ingredient1"
+            android:layout_width="170dp"
+            android:layout_height="36dp"
+            android:fontFamily="cursive"
+            android:gravity="left"
+            android:textColor="@android:color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <AutoCompleteTextView
+            android:id="@+id/ingredient2"
+            android:layout_width="170dp"
+            android:layout_height="36dp"
+            android:fontFamily="cursive"
+            android:gravity="left"
+            android:textColor="@android:color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <AutoCompleteTextView
+            android:id="@+id/ingredient3"
+            android:layout_width="170dp"
+            android:layout_height="36dp"
+            android:fontFamily="cursive"
+            android:gravity="left"
+            android:textColor="@android:color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <AutoCompleteTextView
+            android:id="@+id/ingredient4"
+            android:layout_width="170dp"
+            android:layout_height="36dp"
+            android:fontFamily="cursive"
+            android:gravity="left"
+            android:textColor="@android:color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <AutoCompleteTextView
+            android:id="@+id/ingredient5"
+            android:layout_width="170dp"
+            android:layout_height="36dp"
+            android:fontFamily="cursive"
+            android:gravity="left"
+            android:textColor="@android:color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <AutoCompleteTextView
+            android:id="@+id/ingredient6"
+            android:layout_width="170dp"
+            android:layout_height="36dp"
+            android:fontFamily="cursive"
+            android:gravity="left"
+            android:textColor="@android:color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <AutoCompleteTextView
+            android:id="@+id/ingredient7"
+            android:layout_width="170dp"
+            android:layout_height="36dp"
+            android:fontFamily="cursive"
+            android:gravity="left"
+            android:textColor="@android:color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/Instructions"
+        android:layout_width="156dp"
+        android:layout_height="304dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@null"
+        android:ems="10"
+        android:gravity="top|left"
+        android:inputType="textMultiLine|textLongMessage"
+        android:lines="100"
+        android:maxLength="250"
+        android:selectAllOnFocus="false"
+        android:singleLine="false"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.04"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.886" />
+
+</android.support.constraint.ConstraintLayout>

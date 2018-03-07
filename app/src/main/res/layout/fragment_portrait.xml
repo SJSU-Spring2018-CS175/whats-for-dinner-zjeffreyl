@@ -4,9 +4,16 @@
     android:layout_height="match_parent"
     tools:context="com.example.zjeff.whatsfordinner.PortraitFragment">
 
-    <ListView
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/recipeListPortrait"/>
+        android:textSize="30dp"
+        android:background="#BBBBFF"/>
+
+    <ListView
+        android:id="@+id/recipeListPortrait"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </FrameLayout>

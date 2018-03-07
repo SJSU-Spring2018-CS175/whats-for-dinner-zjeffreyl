@@ -105,7 +105,7 @@
         android:layout_marginTop="84dp"
         android:fontFamily="cursive"
         android:gravity="center"
-        android:text="wMeal"
+        android:text="Meal"
         android:textColor="@android:color/black"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -123,7 +123,7 @@
         android:layout_marginTop="84dp"
         android:fontFamily="cursive"
         android:gravity="center"
-        android:text="Recipe"
+        android:text="Recipes"
         android:textColor="@android:color/black"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -168,6 +168,7 @@
         app:layout_constraintStart_toStartOf="@+id/iadd"
         app:layout_constraintTop_toTopOf="@+id/iadd"
         tools:text="New Recipe" />
+
 
 
 </android.support.constraint.ConstraintLayout>

@@ -121,7 +121,19 @@ public class NewRecipe extends AppCompatActivity {
         EditText desc = (EditText) findViewById(R.id.Instructions);
         String description = desc.getText().toString();
 
-        for(int i = 0 ; i < savedRecipes.size(); i++) {
+        newRecipeIngredients.addAll(ingredients);
+
+        //add the recipe
+        RecipeData newRecipe = new RecipeData(recipeName, newRecipeIngredients, description);
+        savedRecipes.add(newRecipe);
+
+        for (int j = 0; j < newRecipeIngredients.size(); j++) {
+            if (!savedIngredients.contains(newRecipeIngredients.get(j))) {
+                savedIngredients.add(newRecipeIngredients.get(j));
+            }
+        }
+
+        /*for(int i = 0 ; i < savedRecipes.size(); i++) {
             if (savedRecipes.get(i).getName().equals(recipeName)) {
                 Toast.makeText(getApplicationContext(), "Recipe already exists.", Toast.LENGTH_LONG).show();
             } else {
@@ -137,7 +149,7 @@ public class NewRecipe extends AppCompatActivity {
                     }
                 }
             }
-        }
+        }*/
 
         ingred1.getText().clear();
         ingred2.getText().clear();
