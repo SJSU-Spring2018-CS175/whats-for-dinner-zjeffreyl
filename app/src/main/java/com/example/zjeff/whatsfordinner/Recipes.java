@@ -43,15 +43,4 @@ public class Recipes extends AppCompatActivity {
         }
         fragmentTransaction.commit();
     }
-        /*Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
-        recipeList = (ArrayList<RecipeData>)bundle.getSerializable("savedRecipes");
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        TextView textView = (TextView) findViewById(R.id.RecipeTest);
-        textView.setText(recipeList.get(1).getName());
-    }*/
 }

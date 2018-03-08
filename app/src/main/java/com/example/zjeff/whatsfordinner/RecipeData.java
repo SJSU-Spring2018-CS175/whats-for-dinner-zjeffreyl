@@ -29,4 +29,15 @@ public class RecipeData implements Serializable{
         return description;
     }
 
+    public void setIngredients(ArrayList<String> newIngredients){
+        this.ingredients = newIngredients;
+    }
+
+    public void setName(String newName){
+        this.name = newName;
+    }
+
+    public void setDescription(String newDescription){
+        this.description = newDescription;
+    }
 }

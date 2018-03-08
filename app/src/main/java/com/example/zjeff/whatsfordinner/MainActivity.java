@@ -25,8 +25,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
+        Bundle bundle = getIntent().getExtras();
         recipeDataBase = new ArrayList<RecipeData>();
         ingredientsDataBase = new ArrayList<String>();
         file = new File(getFilesDir(), "recipeFile");

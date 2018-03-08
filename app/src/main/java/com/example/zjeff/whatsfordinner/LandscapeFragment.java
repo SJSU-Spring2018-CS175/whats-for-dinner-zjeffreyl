@@ -81,6 +81,10 @@ public class LandscapeFragment extends Fragment {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intentLongClick = new Intent(getActivity(), EditRecipe.class);
+                Bundle b = new Bundle();
+                b.putInt("clickedRecipePosition", i);
+                b.putSerializable("savedRecipes", savedRecipes);
+                intentLongClick.putExtras(b);
                 startActivity(intentLongClick);
                 return false;
             }

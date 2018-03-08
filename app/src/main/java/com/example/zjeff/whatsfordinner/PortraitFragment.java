@@ -24,7 +24,6 @@ public class PortraitFragment extends Fragment {
 
     ArrayList<RecipeData> savedRecipes;
     ArrayList<String> savedRecipesName;
-    //public File fileName;
 
     public PortraitFragment() {
     }
@@ -59,6 +58,10 @@ public class PortraitFragment extends Fragment {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intentLongClick = new Intent(getActivity(), EditRecipe.class);
+                Bundle b = new Bundle();
+                b.putInt("clickedRecipePosition", i);
+                b.putSerializable("savedRecipes", savedRecipes);
+                intentLongClick.putExtras(b);
                 startActivity(intentLongClick);
                 return false;
             }
@@ -66,17 +69,4 @@ public class PortraitFragment extends Fragment {
 
         return view;
     }
-
-    /*@Override
-    public void onStop() {
-        super.onStop();
-        try {
-            FileOutputStream fos = new FileOutputStream(fileName);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(savedRecipes);
-            oos.close();
-        }catch(Exception exception){
-            exception.printStackTrace();
-        }
-    }*/
 }
