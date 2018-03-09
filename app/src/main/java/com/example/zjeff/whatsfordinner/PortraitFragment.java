@@ -28,7 +28,6 @@ public class PortraitFragment extends Fragment {
     public PortraitFragment() {
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -36,7 +35,7 @@ public class PortraitFragment extends Fragment {
         savedRecipesName = new ArrayList<String>();
 
         Intent intent = getActivity().getIntent();
-        Bundle bundle = intent.getExtras();
+        final Bundle bundle = intent.getExtras();
         savedRecipes = (ArrayList<RecipeData>)bundle.getSerializable("savedRecipes");
 
         for(int i = 0; i < savedRecipes.size(); i++){
@@ -50,7 +49,10 @@ public class PortraitFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                //put in meal plan here
+                Intent intentShortClick = new Intent(getActivity(),Meals.class);
+                Bundle b1 = new Bundle();
+                b1.putString("selectedRecipeName", savedRecipes.get(i).getName());
+                intentShortClick.putExtras(b1);
             }
         });
 

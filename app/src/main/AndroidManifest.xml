@@ -24,6 +24,8 @@
         <activity android:name=".Meals" />
         <activity android:name=".EditRecipe"
             android:screenOrientation="portrait"></activity>
+        <activity android:name=".PopUp"
+            android:theme="@style/AppTheme.CustomTheme" ></activity>
     </application>
 
 </manifest>

@@ -1,5 +1,7 @@
 package com.example.zjeff.whatsfordinner;
 
+import android.graphics.drawable.Drawable;
+
 import java.io.FileOutputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
@@ -10,11 +12,13 @@ public class RecipeData implements Serializable{
     private String name;
     private ArrayList<String> ingredients;
     private String description;
+    private Drawable img;
 
     public RecipeData(String name, ArrayList<String> ingredients, String description) {
         this.ingredients = ingredients;
         this.name = name;
         this.description = description;
+        this.img = img;
     }
 
     public ArrayList<String> getIngredients() {
@@ -39,5 +43,9 @@ public class RecipeData implements Serializable{
 
     public void setDescription(String newDescription){
         this.description = newDescription;
+    }
+
+    public Drawable getImg(){
+        return img;
     }
 }

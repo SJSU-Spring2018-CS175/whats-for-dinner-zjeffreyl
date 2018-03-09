@@ -18,7 +18,6 @@ import java.util.ArrayList;
 public class EditRecipe extends AppCompatActivity {
     public ArrayList<RecipeData> savedRecipes;
     public ArrayList<String> savedIngredients;
-    public File fileName;
     public int position;
 
     @Override

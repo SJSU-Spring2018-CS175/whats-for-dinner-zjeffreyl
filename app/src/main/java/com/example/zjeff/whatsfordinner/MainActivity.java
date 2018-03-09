@@ -5,6 +5,7 @@ import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import java.io.File;
@@ -29,6 +30,14 @@ public class MainActivity extends AppCompatActivity {
         recipeDataBase = new ArrayList<RecipeData>();
         ingredientsDataBase = new ArrayList<String>();
         file = new File(getFilesDir(), "recipeFile");
+
+        Button button = (Button) findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, PopUp.class));
+            }
+        });
     }
 
     @Override
