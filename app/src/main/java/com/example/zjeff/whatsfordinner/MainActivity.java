@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         recipeDataBase = new ArrayList<RecipeData>();
         ingredientsDataBase = new ArrayList<String>();
-        file = new File(getFilesDir(), "recipeFile");
+        file = new File(getFilesDir(), "collectedRecipes");
 
         Button button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {

@@ -125,19 +125,20 @@ public class NewRecipe extends AppCompatActivity {
         newRecipeIngredients.addAll(ingredients);
 
         boolean recipeExists = true;
-
-        for (int j = 0; j < newRecipeIngredients.size(); j++) {
-            if(savedRecipes.get(j).getName().equals(recipeName)){
-                Toast.makeText(getApplicationContext(), "Recipe already exists.", Toast.LENGTH_LONG).show();
-                break;
-            }else{
-                recipeExists = false;
-                break;
+        if(savedRecipes.size() > 1) {
+            for (int j = 0; j < savedRecipes.size(); j++) {
+                if (savedRecipes.get(j).getName().equals(recipeName)) {
+                    Toast.makeText(getApplicationContext(), "Recipe already exists.", Toast.LENGTH_LONG).show();
+                    break;
+                } else {
+                    recipeExists = false;
+                }
             }
+        }else{
+            recipeExists = false;
         }
 
         if(recipeExists){
-            //add the recipe
             return;
         }else {
             RecipeData newRecipe = new RecipeData(recipeName, newRecipeIngredients, description);
