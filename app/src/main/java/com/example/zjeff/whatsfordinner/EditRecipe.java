@@ -19,6 +19,7 @@ public class EditRecipe extends AppCompatActivity {
     public ArrayList<RecipeData> savedRecipes;
     public ArrayList<String> savedIngredients;
     public int position;
+    File fileName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,9 @@ public class EditRecipe extends AppCompatActivity {
         Bundle bundle = intent.getExtras();
         position = bundle.getInt("clickedRecipePosition");
         savedRecipes = (ArrayList<RecipeData>)bundle.getSerializable("savedRecipes");
+        savedIngredients = (ArrayList<String>)bundle.getStringArrayList("savedIngredients");
+
+        fileName = new File(getFilesDir(), "recipeFile");
 
         EditText name = (EditText)findViewById(R.id.RecipeName);
         AutoCompleteTextView ingred1 = (AutoCompleteTextView)findViewById(R.id.ingredient1);
@@ -50,6 +54,58 @@ public class EditRecipe extends AppCompatActivity {
         ingred6.setText(theRecipeData.getIngredients().get(5));
         ingred7.setText(theRecipeData.getIngredients().get(6));
         desc.setText(theRecipeData.getDescription());
+    }
+
+    //write the recipeFile
+    @Override
+    protected void onStop() {
+        super.onStop();
+        try {
+            FileOutputStream fos = new FileOutputStream(fileName);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(savedRecipes);
+            oos.writeObject(savedIngredients);
+            oos.close();
+        }catch(Exception exception){
+            exception.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        try {
+            FileInputStream fileInputStream = new FileInputStream(fileName);
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+            ArrayList<RecipeData> savedRecipeList = (ArrayList<RecipeData>) objectInputStream.readObject();
+            ArrayList<String> savedIngredientsList = (ArrayList<String>) objectInputStream.readObject();
+            objectInputStream.close();
+            savedRecipes.clear();
+            for(int i = 0 ; i < savedRecipeList.size(); i ++){
+                savedRecipes.add(savedRecipeList.get(i));
+            }
+            savedIngredients.clear();
+            for(int i = 0 ; i < savedIngredientsList.size(); i ++){
+                savedIngredients.add(savedIngredientsList.get(i));
+            }
+        }catch(Exception exception){
+            exception.printStackTrace();
+        }
+    }
+
+    //write the recipeFile
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        try {
+            FileOutputStream fos = new FileOutputStream(fileName);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(savedRecipes);
+            oos.writeObject(savedIngredients);
+            oos.close();
+        }catch(Exception exception){
+            exception.printStackTrace();
+        }
     }
 
     public void editRecipe(View view){

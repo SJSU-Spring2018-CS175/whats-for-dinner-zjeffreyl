@@ -49,7 +49,7 @@ public class Meals extends AppCompatActivity {
     }
 
 
-    public class CustomAdapter extends BaseAdapter{
+    public class CustomAdapter extends BaseAdapter implements AdapterView.OnItemSelectedListener {
 
         //Displayed list of options
         public ArrayList<String> recipeOptions;
@@ -99,6 +99,7 @@ public class Meals extends AppCompatActivity {
                 selectedRecipeName = (String) bundle.getString("selectedRecipeName");
                 //added one item to recipe
                 recipeOptions.add(selectedRecipeName);
+                bundle.remove("selectedRecipeName");
             }
 
             TextView dayTitle = (TextView)view.findViewById(R.id.Day);
@@ -115,9 +116,30 @@ public class Meals extends AppCompatActivity {
             lunchSpinner.setAdapter(adapter);
             dinnerSpinner.setAdapter(adapter);
 
+            breakfastSpinner.setOnItemSelectedListener(this);
+            lunchSpinner.setOnItemSelectedListener(this);
+            dinnerSpinner.setOnItemSelectedListener(this);
             //set days
             dayTitle.setText(days[i]);
             return view;
         }
+
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view,
+                                   int pos, long id) {
+            // An item was selected. You can retrieve the selected item using
+            // parent.getItemAtPosition(pos)
+            if(recipeOptions.size() <= 1){
+                return;
+            }else {
+                recipeOptions.remove(parent.getItemAtPosition(pos));
+            }
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
+        }
+
     }
 }
