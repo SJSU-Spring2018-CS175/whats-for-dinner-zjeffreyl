@@ -3,16 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="300dp">
+    android:layout_height="match_parent">
 
     <Button
         android:id="@+id/Nutrition"
         android:layout_width="107dp"
         android:layout_height="38dp"
-        android:layout_alignLeft="@+id/FoodOptionsDinner"
-        android:layout_alignStart="@+id/FoodOptionsDinner"
+        android:layout_alignEnd="@+id/DinnerSpinner"
+        android:layout_alignRight="@+id/DinnerSpinner"
         android:layout_alignTop="@+id/Day"
-        android:layout_marginTop="13dp"
         android:text="Nutrition"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,10 +24,10 @@
         android:id="@+id/Day"
         android:layout_width="139dp"
         android:layout_height="32dp"
-        android:layout_alignLeft="@+id/FoodOptionsBreakfast"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/FoodOptionsBreakfast"
-        android:layout_marginTop="27dp"
+        android:layout_marginTop="22dp"
+        android:layout_toLeftOf="@+id/LunchTitle"
+        android:layout_toStartOf="@+id/LunchTitle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.098"
@@ -36,97 +35,49 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.014" />
 
-    <ExpandableListView
-        android:id="@+id/FoodOptionsDinner"
-        android:layout_width="108dp"
-        android:layout_height="301dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/FoodOptionsLunch"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.972"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.353">
-
-    </ExpandableListView>
-
-    <ExpandableListView
-        android:id="@+id/FoodOptionsLunch"
-        android:layout_width="108dp"
-        android:layout_height="301dp"
-        android:layout_alignTop="@+id/FoodOptionsBreakfast"
-        android:layout_centerHorizontal="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.522"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.353">
-
-    </ExpandableListView>
-
-    <ExpandableListView
-        android:id="@+id/FoodOptionsBreakfast"
-        android:layout_width="108dp"
-        android:layout_height="301dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/Day"
-        android:layout_marginTop="42dp"
-        android:foregroundGravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.059"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.353">
-
-    </ExpandableListView>
-
     <TextView
         android:id="@+id/DinnerTitle"
         android:layout_width="77dp"
         android:layout_height="24dp"
-        android:layout_above="@+id/FoodOptionsLunch"
-        android:layout_alignEnd="@+id/Nutrition"
-        android:layout_alignRight="@+id/Nutrition"
-        android:layout_marginEnd="13dp"
-        android:layout_marginRight="13dp"
+        android:layout_alignBaseline="@+id/BreakfastTitle"
+        android:layout_alignBottom="@+id/BreakfastTitle"
+        android:layout_alignLeft="@+id/DinnerSpinner"
+        android:layout_alignStart="@+id/DinnerSpinner"
+        android:layout_marginLeft="9dp"
+        android:layout_marginStart="9dp"
         android:foregroundGravity="center"
         android:gravity="center"
         android:text="Dinner"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.905"
+        app:layout_constraintHorizontal_bias="0.92"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.11" />
+        app:layout_constraintVertical_bias="0.264" />
 
     <TextView
         android:id="@+id/BreakfastTitle"
         android:layout_width="77dp"
         android:layout_height="24dp"
-        android:layout_above="@+id/FoodOptionsLunch"
-        android:layout_alignEnd="@+id/FoodOptionsBreakfast"
-        android:layout_alignRight="@+id/FoodOptionsBreakfast"
-        android:layout_marginEnd="14dp"
-        android:layout_marginRight="14dp"
+        android:layout_alignLeft="@+id/Day"
+        android:layout_alignStart="@+id/Day"
+        android:layout_below="@+id/Nutrition"
+        android:layout_marginTop="8dp"
         android:gravity="center"
         android:text="Breakfast"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.116"
+        app:layout_constraintHorizontal_bias="0.084"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.111" />
+        app:layout_constraintVertical_bias="0.264" />
 
     <TextView
         android:id="@+id/LunchTitle"
         android:layout_width="77dp"
         android:layout_height="24dp"
-        android:layout_above="@+id/FoodOptionsLunch"
+        android:layout_alignBaseline="@+id/BreakfastTitle"
+        android:layout_alignBottom="@+id/BreakfastTitle"
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:text="Lunch"
@@ -134,5 +85,53 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.108" />
+        app:layout_constraintVertical_bias="0.264" />
+
+    <Spinner
+        android:id="@+id/BreakfastSpinner"
+        android:layout_width="130dp"
+        android:layout_height="30dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/BreakfastTitle"
+        android:textSize="5sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.027"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.38" />
+
+    <Spinner
+        android:id="@+id/LunchSpinner"
+        android:layout_width="130dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/BreakfastTitle"
+        android:layout_marginEnd="14dp"
+        android:layout_marginRight="14dp"
+        android:layout_toLeftOf="@+id/DinnerSpinner"
+        android:layout_toStartOf="@+id/DinnerSpinner"
+        android:textSize="5sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.38" />
+
+    <Spinner
+        android:id="@+id/DinnerSpinner"
+        android:layout_width="130dp"
+        android:layout_height="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/DinnerTitle"
+        android:textSize="5sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.972"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.38" />
+
 </RelativeLayout>

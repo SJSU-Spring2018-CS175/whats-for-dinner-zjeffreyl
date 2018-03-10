@@ -1,11 +1,13 @@
 package com.example.zjeff.whatsfordinner;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -35,7 +37,6 @@ public class NewRecipe extends AppCompatActivity {
         Bundle bundle = intent.getExtras();
         savedRecipes = (ArrayList<RecipeData>)bundle.getSerializable("savedRecipes");
         savedIngredients = bundle.getStringArrayList("savedIngredients");
-        savedRecipes = new ArrayList<>();
         savedIngredients = new ArrayList<>();
     }
 
@@ -123,43 +124,40 @@ public class NewRecipe extends AppCompatActivity {
 
         newRecipeIngredients.addAll(ingredients);
 
-        //add the recipe
-        RecipeData newRecipe = new RecipeData(recipeName, newRecipeIngredients, description);
-        savedRecipes.add(newRecipe);
+        boolean recipeExists = true;
 
         for (int j = 0; j < newRecipeIngredients.size(); j++) {
-            if (!savedIngredients.contains(newRecipeIngredients.get(j))) {
-                savedIngredients.add(newRecipeIngredients.get(j));
+            if(savedRecipes.get(j).getName().equals(recipeName)){
+                Toast.makeText(getApplicationContext(), "Recipe already exists.", Toast.LENGTH_LONG).show();
+                break;
+            }else{
+                recipeExists = false;
+                break;
             }
         }
 
-        /*for(int i = 0 ; i < savedRecipes.size(); i++) {
-            if (savedRecipes.get(i).getName().equals(recipeName)) {
-                Toast.makeText(getApplicationContext(), "Recipe already exists.", Toast.LENGTH_LONG).show();
-            } else {
-                newRecipeIngredients.addAll(ingredients);
-
-                //add the recipe
-                RecipeData newRecipe = new RecipeData(recipeName, newRecipeIngredients, description);
-                savedRecipes.add(newRecipe);
-
-                for (int j = 0; j < newRecipeIngredients.size(); j++) {
-                    if (!savedIngredients.contains(newRecipeIngredients.get(j))) {
-                        savedIngredients.add(newRecipeIngredients.get(j));
-                    }
+        if(recipeExists){
+            //add the recipe
+            return;
+        }else {
+            RecipeData newRecipe = new RecipeData(recipeName, newRecipeIngredients, description);
+            savedRecipes.add(newRecipe);
+            for (int i = 0; i < newRecipeIngredients.size(); i++) {
+                if (!savedIngredients.contains(newRecipeIngredients.get(i))) {
+                    savedIngredients.add(newRecipeIngredients.get(i));
                 }
             }
-        }*/
 
-        ingred1.getText().clear();
-        ingred2.getText().clear();
-        ingred3.getText().clear();
-        ingred4.getText().clear();
-        ingred5.getText().clear();
-        ingred6.getText().clear();
-        ingred7.getText().clear();
-        desc.getText().clear();
-        name.getText().clear();
+            ingred1.getText().clear();
+            ingred2.getText().clear();
+            ingred3.getText().clear();
+            ingred4.getText().clear();
+            ingred5.getText().clear();
+            ingred6.getText().clear();
+            ingred7.getText().clear();
+            desc.getText().clear();
+            name.getText().clear();
+        }
     }
 
 }

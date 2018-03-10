@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -53,6 +54,7 @@ public class PortraitFragment extends Fragment {
                 Bundle b1 = new Bundle();
                 b1.putString("selectedRecipeName", savedRecipes.get(i).getName());
                 intentShortClick.putExtras(b1);
+                Toast.makeText(getActivity(), "Entered " + savedRecipes.get(i).getName() + " into meals", Toast.LENGTH_LONG).show();
             }
         });
 
