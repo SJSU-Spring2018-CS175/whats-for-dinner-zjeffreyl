@@ -72,102 +72,6 @@
         app:layout_constraintVertical_bias="0.32999998"
         tools:text="Ingredients" />
 
-    <LinearLayout
-        android:id="@+id/IngredientList"
-        android:layout_width="168dp"
-        android:layout_height="276dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.957"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.86">
-
-        <AutoCompleteTextView
-            android:id="@+id/ingredient1"
-            android:layout_width="170dp"
-            android:layout_height="36dp"
-            android:fontFamily="cursive"
-            android:gravity="left"
-            android:hint="Enter ingredient"
-            android:textColor="@android:color/black"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-
-        <AutoCompleteTextView
-            android:id="@+id/ingredient2"
-            android:layout_width="170dp"
-            android:layout_height="36dp"
-            android:fontFamily="cursive"
-            android:gravity="left"
-            android:hint="Enter ingredient"
-            android:textColor="@android:color/black"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-
-        <AutoCompleteTextView
-            android:id="@+id/ingredient3"
-            android:layout_width="170dp"
-            android:layout_height="36dp"
-            android:fontFamily="cursive"
-            android:gravity="left"
-            android:hint="Enter ingredient"
-            android:textColor="@android:color/black"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-
-        <AutoCompleteTextView
-            android:id="@+id/ingredient4"
-            android:layout_width="170dp"
-            android:layout_height="36dp"
-            android:fontFamily="cursive"
-            android:gravity="left"
-            android:hint="Enter ingredient"
-            android:textColor="@android:color/black"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-
-        <AutoCompleteTextView
-            android:id="@+id/ingredient5"
-            android:layout_width="170dp"
-            android:layout_height="36dp"
-            android:fontFamily="cursive"
-            android:gravity="left"
-            android:hint="Enter ingredient"
-            android:textColor="@android:color/black"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-
-        <AutoCompleteTextView
-            android:id="@+id/ingredient6"
-            android:layout_width="170dp"
-            android:layout_height="36dp"
-            android:fontFamily="cursive"
-            android:gravity="left"
-            android:hint="Enter ingredient"
-            android:textColor="@android:color/black"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-
-        <AutoCompleteTextView
-            android:id="@+id/ingredient7"
-            android:layout_width="170dp"
-            android:layout_height="36dp"
-            android:fontFamily="cursive"
-            android:gravity="left"
-            android:hint="Enter ingredient"
-            android:textColor="@android:color/black"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-
-    </LinearLayout>
-
     <EditText
         android:id="@+id/Instructions"
         android:layout_width="156dp"
@@ -192,5 +96,328 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.886" />
+
+    <ScrollView
+        android:layout_width="159dp"
+        android:layout_height="275dp"
+        android:layout_marginBottom="46dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <AutoCompleteTextView
+                    android:id="@+id/ingredient1Name"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:hint="ingredient"
+                    android:singleLine="true"
+                    android:textSize="13sp" />
+
+                <EditText
+                    android:id="@+id/ingredient1Amount"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:hint="amount"
+                    android:inputType="numberDecimal"
+                    android:textSize="6sp" />
+
+                <EditText
+                    android:id="@+id/ingredient1Unit"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:hint="units"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <AutoCompleteTextView
+                    android:id="@+id/ingredient2Name"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:hint="ingredient"
+                    android:singleLine="true"
+                    android:textSize="13sp" />
+
+                <EditText
+                    android:id="@+id/ingredient2Amount"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:hint="amount"
+                    android:inputType="numberDecimal"
+                    android:textSize="6sp" />
+
+                <EditText
+                    android:id="@+id/ingredient2Unit"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:hint="units"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <AutoCompleteTextView
+                    android:id="@+id/ingredient3Name"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:hint="ingredient"
+                    android:singleLine="true"
+                    android:textSize="13sp" />
+
+                <EditText
+                    android:id="@+id/ingredient3Amount"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:hint="amount"
+                    android:inputType="numberDecimal"
+                    android:textSize="6sp" />
+
+                <EditText
+                    android:id="@+id/ingredient3Unit"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:hint="units"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <AutoCompleteTextView
+                    android:id="@+id/ingredient4Name"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:hint="ingredient"
+                    android:singleLine="true"
+                    android:textSize="13sp" />
+
+                <EditText
+                    android:id="@+id/ingredient4Amount"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:hint="amount"
+                    android:inputType="numberDecimal"
+                    android:textSize="6sp" />
+
+                <EditText
+                    android:id="@+id/ingredient4Unit"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:hint="units"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <AutoCompleteTextView
+                    android:id="@+id/ingredient5Name"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:hint="ingredient"
+                    android:singleLine="true"
+                    android:textSize="13sp" />
+
+                <EditText
+                    android:id="@+id/ingredient5Amount"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:hint="amount"
+                    android:inputType="numberDecimal"
+                    android:textSize="6sp" />
+
+                <EditText
+                    android:id="@+id/ingredient5Unit"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:hint="units"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <AutoCompleteTextView
+                    android:id="@+id/ingredient6Name"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:hint="ingredient"
+                    android:singleLine="true"
+                    android:textSize="13sp" />
+
+                <EditText
+                    android:id="@+id/ingredient6Amount"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:hint="amount"
+                    android:inputType="numberDecimal"
+                    android:textSize="6sp" />
+
+                <EditText
+                    android:id="@+id/ingredient6Unit"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:hint="units"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <AutoCompleteTextView
+                    android:id="@+id/ingredient7Name"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:hint="ingredient"
+                    android:singleLine="true"
+                    android:textSize="13sp" />
+
+                <EditText
+                    android:id="@+id/ingredient7Amount"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:hint="amount"
+                    android:inputType="numberDecimal"
+                    android:textSize="6sp" />
+
+                <EditText
+                    android:id="@+id/ingredient7Unit"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:hint="units"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <AutoCompleteTextView
+                    android:id="@+id/ingredient8Name"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:hint="ingredient"
+                    android:singleLine="true"
+                    android:textSize="13sp" />
+
+                <EditText
+                    android:id="@+id/ingredient8Amount"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:hint="amount"
+                    android:inputType="numberDecimal"
+                    android:textSize="6sp" />
+
+                <EditText
+                    android:id="@+id/ingredient8Unit"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:hint="units"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <AutoCompleteTextView
+                    android:id="@+id/ingredient9Name"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:hint="ingredient"
+                    android:singleLine="true"
+                    android:textSize="13sp" />
+
+                <EditText
+                    android:id="@+id/ingredient9Amount"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:hint="amount"
+                    android:inputType="numberDecimal"
+                    android:textSize="6sp" />
+
+                <EditText
+                    android:id="@+id/ingredient9Unit"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:hint="units"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <AutoCompleteTextView
+                    android:id="@+id/ingredient10Name"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:hint="ingredient"
+                    android:singleLine="true"
+                    android:textSize="13sp" />
+
+                <EditText
+                    android:id="@+id/ingredient10Amount"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:hint="amount"
+                    android:inputType="numberDecimal"
+                    android:textSize="6sp" />
+
+                <EditText
+                    android:id="@+id/ingredient10Unit"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:hint="units"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </android.support.constraint.ConstraintLayout>

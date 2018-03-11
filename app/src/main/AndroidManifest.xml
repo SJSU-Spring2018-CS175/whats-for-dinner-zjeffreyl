@@ -20,9 +20,11 @@
         <activity android:name=".Groceries" />
         <activity android:name=".Recipes" />
         <activity android:name=".NewRecipe"
+            android:windowSoftInputMode="adjustPan|stateHidden"
             android:screenOrientation="portrait"/>
         <activity android:name=".Meals" />
         <activity android:name=".EditRecipe"
+            android:windowSoftInputMode="adjustPan|stateHidden"
             android:screenOrientation="portrait"></activity>
         <activity android:name=".PopUp"
             android:theme="@style/AppTheme.CustomTheme" ></activity>

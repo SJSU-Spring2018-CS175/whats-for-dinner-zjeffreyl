@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class LandscapeFragment extends Fragment {
     ArrayList<RecipeData> savedRecipes;
     ArrayList<String> savedRecipesName;
-    ArrayList<String> ingredientsDisplay;
+    ArrayList<Ingredient> ingredients;
     public LandscapeFragment() {
         // Required empty public constructor
     }
@@ -61,15 +61,15 @@ public class LandscapeFragment extends Fragment {
                 ingText.setText("");
                 descText.setText("");
                 nameText.setText("");
-                //get the arraylist of a recipe
-                ingredientsDisplay = savedRecipes.get(i).getIngredients();
+                //get the arraylist of a the ingredients
+                ingredients = savedRecipes.get(i).getIngredients();
                 //loop through all the ingredients
-                for(int j = 0 ; j < ingredientsDisplay.size(); j++){
-                    String ingredTest = ingredientsDisplay.get(j);
-                    if(ingredientsDisplay.get(j).equals("")){
+                for(int j = 0 ; j < ingredients.size(); j++){
+                    String ingredTest = ingredients.get(j).getRecipeStringDisplay();
+                    if(ingredients.get(j).equals("")){
                         break;
                     }
-                    ingredDisplay = ingredDisplay + ingredientsDisplay.get(j) + System.getProperty("line.separator");
+                    ingredDisplay = ingredDisplay + ingredients.get(j).getRecipeStringDisplay() + System.getProperty("line.separator");
                 }
                 ingText.setText(ingredDisplay);
                 descText.setText(savedRecipes.get(i).getDescription());

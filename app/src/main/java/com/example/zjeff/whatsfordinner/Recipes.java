@@ -19,13 +19,15 @@ import java.util.ArrayList;
 public class Recipes extends AppCompatActivity {
 
     public File file;
-    public ArrayList<RecipeData> recipeList;
+    public ArrayList<RecipeData> savedRecipes;
+    public ArrayList<Ingredient> savedIngredients;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        recipeList = (ArrayList<RecipeData>)bundle.getSerializable("savedRecipes");
+        savedRecipes = (ArrayList<RecipeData>)bundle.getSerializable("savedRecipes");
+        savedIngredients = (ArrayList<Ingredient>)bundle.getSerializable("savedIngredients");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipes);

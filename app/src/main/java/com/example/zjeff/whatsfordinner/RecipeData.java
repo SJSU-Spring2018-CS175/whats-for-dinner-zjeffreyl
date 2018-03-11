@@ -2,26 +2,24 @@ package com.example.zjeff.whatsfordinner;
 
 import android.graphics.drawable.Drawable;
 
-import java.io.FileOutputStream;
-import java.io.ObjectOutput;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class RecipeData implements Serializable{
     private String name;
-    private ArrayList<String> ingredients;
+    private ArrayList<Ingredient> ingredients;
     private String description;
     private Drawable img;
 
-    public RecipeData(String name, ArrayList<String> ingredients, String description) {
+    public RecipeData(String name, ArrayList<Ingredient> ingredients, String description) {
         this.ingredients = ingredients;
         this.name = name;
         this.description = description;
         this.img = img;
     }
 
-    public ArrayList<String> getIngredients() {
+    public ArrayList<Ingredient> getIngredients() {
         return ingredients;
     }
 
@@ -33,7 +31,7 @@ public class RecipeData implements Serializable{
         return description;
     }
 
-    public void setIngredients(ArrayList<String> newIngredients){
+    public void setIngredients(ArrayList<Ingredient> newIngredients){
         this.ingredients = newIngredients;
     }
 
@@ -48,4 +46,5 @@ public class RecipeData implements Serializable{
     public Drawable getImg(){
         return img;
     }
+
 }
