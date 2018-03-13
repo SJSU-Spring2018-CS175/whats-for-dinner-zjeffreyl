@@ -17,7 +17,7 @@ import android.widget.Toast;
 import java.io.File;
 import java.util.ArrayList;
 
-public class Meals extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
+public class Meals extends AppCompatActivity/* implements AdapterView.OnItemSelectedListener*/{
 
     Spinner breakfastSpinnerSunday;
     Spinner lunchSpinnerSunday;
@@ -40,7 +40,6 @@ public class Meals extends AppCompatActivity implements AdapterView.OnItemSelect
     Spinner breakfastSpinnerSaturday;
     Spinner lunchSpinnerSaturday;
     Spinner dinnerSpinnerSaturday;
-
 
     public ArrayList<String> recipeOptions = new ArrayList<>();
     File fileName;
@@ -125,11 +124,63 @@ public class Meals extends AppCompatActivity implements AdapterView.OnItemSelect
         lunchSpinnerSaturday.setAdapter(adapter);
         dinnerSpinnerSaturday.setAdapter(adapter);
         //////////////////////////////////////////////////////////
-        breakfastSpinnerSunday.setOnItemSelectedListener(this);
-        lunchSpinnerSunday.setOnItemSelectedListener(this);
-        dinnerSpinnerSunday.setOnItemSelectedListener(this);
 
-        breakfastSpinnerMonday.setOnItemSelectedListener(this);
+        breakfastSpinnerSunday.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getApplicationContext(), Groceries.class);
+                Bundle b = new Bundle();
+                if(adapterView.getItemAtPosition(i).equals("Eating out")){
+                    return;
+                }else {
+                    //recipeOptions.remove(adapterView.getItemAtPosition(i));
+                    Toast.makeText( getApplicationContext(), "Choosen " + adapterView.getItemAtPosition(i), Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        lunchSpinnerSunday.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getApplicationContext(), Groceries.class);
+                Bundle b = new Bundle();
+                if(adapterView.getItemAtPosition(i).equals("Eating out")){
+                    return;
+                }else {
+                    recipeOptions.remove(adapterView.getItemAtPosition(i));
+                    Toast.makeText( getApplicationContext(), "Choosen " + adapterView.getItemAtPosition(i), Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        dinnerSpinnerSunday.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getApplicationContext(), Groceries.class);
+                Bundle b = new Bundle();
+                if(adapterView.getItemAtPosition(i).equals("Eating out")){
+                    return;
+                }else {
+                    recipeOptions.remove(adapterView.getItemAtPosition(i));
+                    Toast.makeText( getApplicationContext(), "Choosen " + adapterView.getItemAtPosition(i), Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        /*breakfastSpinnerMonday.setOnItemSelectedListener(this);
         lunchSpinnerMonday.setOnItemSelectedListener(this);
         dinnerSpinnerMonday.setOnItemSelectedListener(this);
 
@@ -151,7 +202,7 @@ public class Meals extends AppCompatActivity implements AdapterView.OnItemSelect
 
         breakfastSpinnerSaturday.setOnItemSelectedListener(this);
         lunchSpinnerSaturday.setOnItemSelectedListener(this);
-        dinnerSpinnerSaturday.setOnItemSelectedListener(this);
+        dinnerSpinnerSaturday.setOnItemSelectedListener(this);*/
     }
 
     @Override
@@ -161,22 +212,5 @@ public class Meals extends AppCompatActivity implements AdapterView.OnItemSelect
         Bundle b = new Bundle();
         b.putStringArrayList("recipeOptions", recipeOptions);
         intent.putExtras(b);
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        Intent intent = new Intent(getApplicationContext(), Groceries.class);
-        Bundle b = new Bundle();
-        if(adapterView.getItemAtPosition(i).equals("Eating out")){
-            return;
-        }else {
-            recipeOptions.remove(adapterView.getItemAtPosition(i));
-            Toast.makeText( getApplicationContext(), "Choosen " + adapterView.getItemAtPosition(i), Toast.LENGTH_LONG).show();
-        }
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
-
     }
 }

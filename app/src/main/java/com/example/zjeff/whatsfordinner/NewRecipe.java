@@ -215,13 +215,13 @@ public class NewRecipe extends AppCompatActivity {
         ingredients.add(ingredient10);
 
         //Testing each ingredient against all of the saved ingredients
-        for(int i = 0; i < ingredients.size(); i++){
+        /*for(int i = 0; i < ingredients.size(); i++){
             for(int j = 0 ; j < savedIngredients.size(); j++){
                 if(ingredients.get(i).getName().equals(savedIngredients.get(i).getName())){
                     ingredients.remove(i);
                 }
             }
-        }
+        }*/
 
         EditText desc = (EditText) findViewById(R.id.Instructions);
         String description = desc.getText().toString();
