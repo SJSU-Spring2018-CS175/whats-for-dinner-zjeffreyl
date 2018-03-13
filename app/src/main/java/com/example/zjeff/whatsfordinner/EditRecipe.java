@@ -201,16 +201,16 @@ public class EditRecipe extends AppCompatActivity {
         EditText ingred9amount = (EditText)findViewById(R.id.ingredient9Amount);
         EditText ingred10amount = (EditText)findViewById(R.id.ingredient10Amount);
 
-        int ingredient1amount = Integer.parseInt(ingred1amount.getText().toString());
-        int ingredient2amount = Integer.parseInt(ingred2amount.getText().toString());
-        int ingredient3amount = Integer.parseInt(ingred3amount.getText().toString());
-        int ingredient4amount = Integer.parseInt(ingred4amount.getText().toString());
-        int ingredient5amount = Integer.parseInt(ingred5amount.getText().toString());
-        int ingredient6amount = Integer.parseInt(ingred6amount.getText().toString());
-        int ingredient7amount = Integer.parseInt(ingred7amount.getText().toString());
-        int ingredient8amount = Integer.parseInt(ingred8amount.getText().toString());
-        int ingredient9amount = Integer.parseInt(ingred9amount.getText().toString());
-        int ingredient10amount = Integer.parseInt(ingred10amount.getText().toString());
+        double ingredient1amount = Double.parseDouble(ingred1amount.getText().toString());
+        double ingredient2amount = Double.parseDouble(ingred2amount.getText().toString());
+        double ingredient3amount = Double.parseDouble(ingred3amount.getText().toString());
+        double ingredient4amount = Double.parseDouble(ingred4amount.getText().toString());
+        double ingredient5amount = Double.parseDouble(ingred5amount.getText().toString());
+        double ingredient6amount = Double.parseDouble(ingred6amount.getText().toString());
+        double ingredient7amount = Double.parseDouble(ingred7amount.getText().toString());
+        double ingredient8amount = Double.parseDouble(ingred8amount.getText().toString());
+        double ingredient9amount = Double.parseDouble(ingred9amount.getText().toString());
+        double ingredient10amount = Double.parseDouble(ingred10amount.getText().toString());
 
         EditText ingred1unit = (EditText)findViewById(R.id.ingredient1Unit);
         EditText ingred2unit = (EditText)findViewById(R.id.ingredient2Unit);

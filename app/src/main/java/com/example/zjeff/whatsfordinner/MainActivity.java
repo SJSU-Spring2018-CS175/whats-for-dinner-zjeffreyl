@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     public static ArrayList<RecipeData> recipeDataBase;
-    public static ArrayList<String> ingredientsDataBase;
+    public static ArrayList<Ingredient> ingredientsDataBase;
     public File file;
 
     @Override
@@ -28,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Bundle bundle = getIntent().getExtras();
         recipeDataBase = new ArrayList<RecipeData>();
-        ingredientsDataBase = new ArrayList<String>();
-        file = new File(getFilesDir(), "collectedRecipes");
+        ingredientsDataBase = new ArrayList<Ingredient>();
+        file = new File(getFilesDir(), "recipeFile");
 
         Button button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
             FileInputStream fileInputStream = new FileInputStream(file);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             ArrayList<RecipeData> savedRecipeList = (ArrayList<RecipeData>) objectInputStream.readObject();
-            ArrayList<String> savedIngredientsList = (ArrayList<String>) objectInputStream.readObject();
+            ArrayList<Ingredient> savedIngredientsList = (ArrayList<Ingredient>) objectInputStream.readObject();
             objectInputStream.close();
             recipeDataBase.clear();
             for(int i = 0 ; i < savedRecipeList.size(); i ++){

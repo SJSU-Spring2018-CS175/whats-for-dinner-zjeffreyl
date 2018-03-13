@@ -63,8 +63,10 @@
         android:layout_alignStart="@+id/Day"
         android:layout_below="@+id/Nutrition"
         android:layout_marginTop="8dp"
+        android:textSize="15dp"
         android:gravity="center"
         android:text="Breakfast"
+        android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.084"
@@ -103,7 +105,7 @@
         app:layout_constraintVertical_bias="0.38" />
 
     <Spinner
-        android:id="@+id/LunchSpinner"
+        android:id="@+id/DinnerSpinner"
         android:layout_width="130dp"
         android:layout_height="30dp"
         android:layout_below="@+id/BreakfastTitle"

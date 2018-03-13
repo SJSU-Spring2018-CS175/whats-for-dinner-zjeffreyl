@@ -133,9 +133,9 @@
                     android:id="@+id/ingredient1Amount"
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
-                    android:hint="amount"
+                    android:hint="amt"
                     android:inputType="numberDecimal"
-                    android:textSize="6sp" />
+                    android:textSize="10sp" />
 
                 <EditText
                     android:id="@+id/ingredient1Unit"
@@ -163,9 +163,9 @@
                     android:id="@+id/ingredient2Amount"
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
-                    android:hint="amount"
+                    android:hint="amt"
                     android:inputType="numberDecimal"
-                    android:textSize="6sp" />
+                    android:textSize="10sp" />
 
                 <EditText
                     android:id="@+id/ingredient2Unit"
@@ -193,9 +193,9 @@
                     android:id="@+id/ingredient3Amount"
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
-                    android:hint="amount"
+                    android:hint="amt"
                     android:inputType="numberDecimal"
-                    android:textSize="6sp" />
+                    android:textSize="10sp" />
 
                 <EditText
                     android:id="@+id/ingredient3Unit"
@@ -223,9 +223,9 @@
                     android:id="@+id/ingredient4Amount"
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
-                    android:hint="amount"
+                    android:hint="amt"
                     android:inputType="numberDecimal"
-                    android:textSize="6sp" />
+                    android:textSize="10sp" />
 
                 <EditText
                     android:id="@+id/ingredient4Unit"
@@ -253,9 +253,9 @@
                     android:id="@+id/ingredient5Amount"
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
-                    android:hint="amount"
+                    android:hint="amt"
                     android:inputType="numberDecimal"
-                    android:textSize="6sp" />
+                    android:textSize="10sp" />
 
                 <EditText
                     android:id="@+id/ingredient5Unit"
@@ -283,9 +283,9 @@
                     android:id="@+id/ingredient6Amount"
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
-                    android:hint="amount"
+                    android:hint="amt"
                     android:inputType="numberDecimal"
-                    android:textSize="6sp" />
+                    android:textSize="10sp" />
 
                 <EditText
                     android:id="@+id/ingredient6Unit"
@@ -313,9 +313,9 @@
                     android:id="@+id/ingredient7Amount"
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
-                    android:hint="amount"
+                    android:hint="amt"
                     android:inputType="numberDecimal"
-                    android:textSize="6sp" />
+                    android:textSize="10sp" />
 
                 <EditText
                     android:id="@+id/ingredient7Unit"
@@ -343,9 +343,9 @@
                     android:id="@+id/ingredient8Amount"
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
-                    android:hint="amount"
+                    android:hint="amt"
                     android:inputType="numberDecimal"
-                    android:textSize="6sp" />
+                    android:textSize="10sp" />
 
                 <EditText
                     android:id="@+id/ingredient8Unit"
@@ -373,9 +373,9 @@
                     android:id="@+id/ingredient9Amount"
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
-                    android:hint="amount"
+                    android:hint="amt"
                     android:inputType="numberDecimal"
-                    android:textSize="6sp" />
+                    android:textSize="10sp" />
 
                 <EditText
                     android:id="@+id/ingredient9Unit"
@@ -403,9 +403,9 @@
                     android:id="@+id/ingredient10Amount"
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
-                    android:hint="amount"
+                    android:hint="amt"
                     android:inputType="numberDecimal"
-                    android:textSize="6sp" />
+                    android:textSize="10sp" />
 
                 <EditText
                     android:id="@+id/ingredient10Unit"

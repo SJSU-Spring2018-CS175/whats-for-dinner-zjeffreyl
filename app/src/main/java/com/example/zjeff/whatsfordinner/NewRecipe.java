@@ -20,16 +20,21 @@ public class NewRecipe extends AppCompatActivity {
     public ArrayList<Ingredient> savedIngredients;
     public File fileName;
 
+    //UI data
+    public ArrayList<Ingredient> newRecipeIngredients;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_recipe);
 
         fileName = new File(getFilesDir(), "recipeFile");
+        newRecipeIngredients = new ArrayList<Ingredient>();
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         savedRecipes = (ArrayList<RecipeData>)bundle.getSerializable("savedRecipes");
         savedIngredients = (ArrayList<Ingredient>)bundle.getSerializable("savedIngredients");
+        //savedRecipes = new ArrayList<>();
+        //savedIngredients = new ArrayList<>();
     }
 
     //write the recipeFile
@@ -40,6 +45,7 @@ public class NewRecipe extends AppCompatActivity {
             FileOutputStream fos = new FileOutputStream(fileName);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(savedRecipes);
+            oos.writeObject(savedIngredients);
             oos.close();
         }catch(Exception exception){
             exception.printStackTrace();
@@ -54,6 +60,7 @@ public class NewRecipe extends AppCompatActivity {
             FileOutputStream fos = new FileOutputStream(fileName);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(savedRecipes);
+            oos.writeObject(savedIngredients);
             oos.close();
         }catch(Exception exception){
             exception.printStackTrace();
@@ -67,11 +74,15 @@ public class NewRecipe extends AppCompatActivity {
             FileInputStream fileInputStream = new FileInputStream(fileName);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             ArrayList<RecipeData> savedRecipeList = (ArrayList<RecipeData>) objectInputStream.readObject();
-            ArrayList<String> savedIngredientsList = (ArrayList<String>) objectInputStream.readObject();
+            ArrayList<Ingredient> savedIngredientsList = (ArrayList<Ingredient>) objectInputStream.readObject();
             objectInputStream.close();
             savedRecipes.clear();
             for(int i = 0 ; i < savedRecipeList.size(); i ++){
                 savedRecipes.add(savedRecipeList.get(i));
+            }
+            savedIngredients.clear();
+            for(int i = 0 ; i < savedIngredientsList.size(); i++){
+                savedIngredients.add(savedIngredientsList.get(i));
             }
         }catch(Exception exception){
             exception.printStackTrace();
@@ -117,16 +128,46 @@ public class NewRecipe extends AppCompatActivity {
         EditText ingred9amount = (EditText)findViewById(R.id.ingredient9Amount);
         EditText ingred10amount = (EditText)findViewById(R.id.ingredient10Amount);
 
-        int ingredient1amount = Integer.parseInt(ingred1amount.getText().toString());
-        int ingredient2amount = Integer.parseInt(ingred2amount.getText().toString());
-        int ingredient3amount = Integer.parseInt(ingred3amount.getText().toString());
-        int ingredient4amount = Integer.parseInt(ingred4amount.getText().toString());
-        int ingredient5amount = Integer.parseInt(ingred5amount.getText().toString());
-        int ingredient6amount = Integer.parseInt(ingred6amount.getText().toString());
-        int ingredient7amount = Integer.parseInt(ingred7amount.getText().toString());
-        int ingredient8amount = Integer.parseInt(ingred8amount.getText().toString());
-        int ingredient9amount = Integer.parseInt(ingred9amount.getText().toString());
-        int ingredient10amount = Integer.parseInt(ingred10amount.getText().toString());
+        double ingredient1amount = 0;
+        if(!ingred1amount.getText().toString().equals("")) {
+            ingredient1amount = Double.parseDouble(ingred1amount.getText().toString());
+        }
+        double ingredient2amount = 0;
+        if(!ingred2amount.getText().toString().equals("")) {
+            ingredient2amount = Double.parseDouble(ingred2amount.getText().toString());
+        }
+        double ingredient3amount = 0;
+        if(!ingred3amount.getText().toString().equals("")) {
+            ingredient3amount = Double.parseDouble(ingred3amount.getText().toString());
+        }
+        double ingredient4amount = 0;
+        if(!ingred4amount.getText().toString().equals("")) {
+            ingredient4amount = Double.parseDouble(ingred4amount.getText().toString());
+        }
+        double ingredient5amount = 0;
+        if(!ingred5amount.getText().toString().equals("")) {
+            ingredient5amount = Double.parseDouble(ingred5amount.getText().toString());
+        }
+        double ingredient6amount = 0;
+        if(!ingred6amount.getText().toString().equals("")) {
+            ingredient6amount = Double.parseDouble(ingred6amount.getText().toString());
+        }
+        double ingredient7amount = 0;
+        if(!ingred7amount.getText().toString().equals("")) {
+            ingredient7amount = Double.parseDouble(ingred7amount.getText().toString());
+        }
+        double ingredient8amount = 0;
+        if(!ingred8amount.getText().toString().equals("")) {
+            ingredient8amount = Double.parseDouble(ingred8amount.getText().toString());
+        }
+        double ingredient9amount = 0;
+        if(!ingred9amount.getText().toString().equals("")) {
+            ingredient9amount = Double.parseDouble(ingred9amount.getText().toString());
+        }
+        double ingredient10amount = 0;
+        if(!ingred10amount.getText().toString().equals("")) {
+            ingredient10amount = Double.parseDouble(ingred10amount.getText().toString());
+        }
 
         EditText ingred1unit = (EditText)findViewById(R.id.ingredient1Unit);
         EditText ingred2unit = (EditText)findViewById(R.id.ingredient2Unit);
@@ -173,6 +214,7 @@ public class NewRecipe extends AppCompatActivity {
         ingredients.add(ingredient9);
         ingredients.add(ingredient10);
 
+        //Testing each ingredient against all of the saved ingredients
         for(int i = 0; i < ingredients.size(); i++){
             for(int j = 0 ; j < savedIngredients.size(); j++){
                 if(ingredients.get(i).getName().equals(savedIngredients.get(i).getName())){
@@ -183,6 +225,8 @@ public class NewRecipe extends AppCompatActivity {
 
         EditText desc = (EditText) findViewById(R.id.Instructions);
         String description = desc.getText().toString();
+
+        newRecipeIngredients.addAll(ingredients);
 
         //All values to create one value here
         //name, list of ingredients, descriptions
@@ -204,8 +248,9 @@ public class NewRecipe extends AppCompatActivity {
         if(recipeExists){
             return;
         }else {
-            RecipeData newRecipe = new RecipeData(recipeName, ingredients, description);
+            RecipeData newRecipe = new RecipeData(recipeName, newRecipeIngredients, description);
             savedRecipes.add(newRecipe);
+            savedIngredients.addAll(newRecipeIngredients);
 
             name.getText().clear();
 

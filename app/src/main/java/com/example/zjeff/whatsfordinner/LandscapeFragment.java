@@ -66,7 +66,7 @@ public class LandscapeFragment extends Fragment {
                 //loop through all the ingredients
                 for(int j = 0 ; j < ingredients.size(); j++){
                     String ingredTest = ingredients.get(j).getRecipeStringDisplay();
-                    if(ingredients.get(j).equals("")){
+                    if(ingredients.get(j).getAmount() == 0){
                         break;
                     }
                     ingredDisplay = ingredDisplay + ingredients.get(j).getRecipeStringDisplay() + System.getProperty("line.separator");

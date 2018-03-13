@@ -6,33 +6,609 @@
     android:layout_height="match_parent"
     tools:context="com.example.zjeff.whatsfordinner.Meals">
 
-    <ListView
-        android:id="@+id/DayMeals"
-        android:layout_width="395dp"
-        android:layout_height="400dp"
+    <TextView
+        android:id="@+id/NutritionDisplay"
+        android:layout_width="0dp"
+        android:layout_height="158dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/ScrollMeal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ScrollView
+        android:id="@+id/ScrollMeal"
+        android:layout_width="0dp"
+        android:layout_height="428dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0">
 
-    <TextView
-        android:id="@+id/NutritionDisplay"
-        android:layout_width="385dp"
-        android:layout_height="184dp"
-        android:layout_marginBottom="416dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/Sunday"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="Sunday"
+                android:textColor="@android:color/black"
+                android:textSize="15dp"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:id="@+id/SundayTitles"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/SundayBreakfastTitle"
+                    android:layout_width="136dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="Breakfast"
+                    android:textColor="@android:color/black"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:id="@+id/SundayLunchTitle"
+                    android:layout_width="136dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="Lunch"
+                    android:textColor="@android:color/black"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:id="@+id/SundayDinnerTitle"
+                    android:layout_width="136dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="Dinner"
+                    android:textColor="@android:color/black"
+                    android:textSize="13dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/SundaySpinners"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/SundayBreakfastSpinner"
+                    android:layout_width="136dp"
+                    android:layout_height="30dp"
+                    android:textSize="5sp" />
+
+                <Spinner
+                    android:id="@+id/SundayLunchSpinner"
+                    android:layout_width="136dp"
+                    android:layout_height="30dp"
+                    android:textSize="5sp" />
+
+                <Spinner
+                    android:id="@+id/SundayDinnerSpinner"
+                    android:layout_width="136dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="14dp"
+                    android:layout_marginRight="14dp"
+                    android:textSize="5sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/Monday"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="Monday"
+                android:textColor="@android:color/black"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/MondayTitles"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/MondayBreakfastTitle"
+                    android:layout_width="136dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="Breakfast"
+                    android:textColor="@android:color/black"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:id="@+id/MondayLunchTitle"
+                    android:layout_width="136dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="Lunch"
+                    android:textColor="@android:color/black"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:id="@+id/MondayDinnerTitle"
+                    android:layout_width="136dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="Dinner"
+                    android:textColor="@android:color/black"
+                    android:textSize="13dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/MondaySpinners"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/MondayBreakfastSpinner"
+                    android:layout_width="136dp"
+                    android:layout_height="30dp"
+                    android:textSize="5sp" />
+
+                <Spinner
+                    android:id="@+id/MondayLunchSpinner"
+                    android:layout_width="136dp"
+                    android:layout_height="30dp"
+                    android:textSize="5sp" />
+
+                <Spinner
+                    android:id="@+id/MondayDinnerSpinner"
+                    android:layout_width="136dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="14dp"
+                    android:layout_marginRight="14dp"
+                    android:textSize="5sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/Tuesday"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="Tuesday"
+                android:textColor="@android:color/black"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/TuesdayTitles"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/TuesdayBreakfastTitle"
+                    android:layout_width="136dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="Breakfast"
+                    android:textColor="@android:color/black"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:id="@+id/TuesdayLunchTitle"
+                    android:layout_width="136dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="Lunch"
+                    android:textColor="@android:color/black"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:id="@+id/TuesdayDinnerTitle"
+                    android:layout_width="136dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="Dinner"
+                    android:textColor="@android:color/black"
+                    android:textSize="13dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/TuesdaySpinners"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/TuesdayBreakfastSpinner"
+                    android:layout_width="136dp"
+                    android:layout_height="30dp"
+                    android:textSize="5sp" />
+
+                <Spinner
+                    android:id="@+id/TuesdayLunchSpinner"
+                    android:layout_width="136dp"
+                    android:layout_height="30dp"
+                    android:textSize="5sp" />
+
+                <Spinner
+                    android:id="@+id/TuesdayDinnerSpinner"
+                    android:layout_width="136dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="14dp"
+                    android:layout_marginRight="14dp"
+                    android:textSize="5sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/Wednesday"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="Wednesday"
+                android:textColor="@android:color/black"
+                android:textSize="15dp"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:id="@+id/WednesdayTitles"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/WednesdayBreakfastTitle"
+                    android:layout_width="136dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="Breakfast"
+                    android:textColor="@android:color/black"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:id="@+id/WednesdayLunchTitle"
+                    android:layout_width="136dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="Lunch"
+                    android:textColor="@android:color/black"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:id="@+id/WednesdayDinnerTitle"
+                    android:layout_width="136dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="Dinner"
+                    android:textColor="@android:color/black"
+                    android:textSize="13dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/WednesdaySpinners"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/WednesdayBreakfastSpinner"
+                    android:layout_width="136dp"
+                    android:layout_height="30dp"
+                    android:textSize="5sp" />
+
+                <Spinner
+                    android:id="@+id/WednesdayLunchSpinner"
+                    android:layout_width="136dp"
+                    android:layout_height="30dp"
+                    android:textSize="5sp" />
+
+                <Spinner
+                    android:id="@+id/WednesdayDinnerSpinner"
+                    android:layout_width="136dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="14dp"
+                    android:layout_marginRight="14dp"
+                    android:textSize="5sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/Thursday"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="Thursday"
+                android:textColor="@android:color/black"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/ThursdayTitles"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/ThursdayBreakfastTitle"
+                    android:layout_width="136dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="Breakfast"
+                    android:textColor="@android:color/black"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:id="@+id/ThursdayLunchTitle"
+                    android:layout_width="136dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="Lunch"
+                    android:textColor="@android:color/black"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:id="@+id/ThursdayDinnerTitle"
+                    android:layout_width="136dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="Dinner"
+                    android:textColor="@android:color/black"
+                    android:textSize="13dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ThursdaySpinners"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/ThursdayBreakfastSpinner"
+                    android:layout_width="136dp"
+                    android:layout_height="30dp"
+                    android:textSize="5sp" />
+
+                <Spinner
+                    android:id="@+id/ThursdayLunchSpinner"
+                    android:layout_width="136dp"
+                    android:layout_height="30dp"
+                    android:textSize="5sp" />
+
+                <Spinner
+                    android:id="@+id/ThursdayDinnerSpinner"
+                    android:layout_width="136dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="14dp"
+                    android:layout_marginRight="14dp"
+                    android:textSize="5sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/Friday"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="Friday"
+                android:textColor="@android:color/black"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/FridayTitles"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/FridayBreakfastTitle"
+                    android:layout_width="136dp"
+                    android:layout_height="24dp"
+                    android:layout_below="@+id/Nutrition"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="Breakfast"
+                    android:textColor="@android:color/black"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:id="@+id/FridayLunchTitle"
+                    android:layout_width="136dp"
+                    android:layout_height="24dp"
+                    android:layout_below="@+id/Nutrition"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="Lunch"
+                    android:textColor="@android:color/black"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:id="@+id/FridayDinnerTitle"
+                    android:layout_width="136dp"
+                    android:layout_height="24dp"
+                    android:layout_below="@+id/Nutrition"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="Dinner"
+                    android:textColor="@android:color/black"
+                    android:textSize="13dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/FridaySpinners"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/FridayBreakfastSpinner"
+                    android:layout_width="136dp"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/BreakfastTitle"
+                    android:textSize="5sp" />
+
+                <Spinner
+                    android:id="@+id/FridayLunchSpinner"
+                    android:layout_width="136dp"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/DinnerTitle"
+                    android:textSize="5sp" />
+
+                <Spinner
+                    android:id="@+id/FridayDinnerSpinner"
+                    android:layout_width="136dp"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/BreakfastTitle"
+                    android:layout_marginEnd="14dp"
+                    android:layout_marginRight="14dp"
+                    android:textSize="5sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/Saturday"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="Saturday"
+                android:textColor="@android:color/black"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/SaturdayTitles"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/SaturdayBreakfastTitle"
+                    android:layout_width="136dp"
+                    android:layout_height="24dp"
+                    android:layout_below="@+id/Nutrition"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="Breakfast"
+                    android:textColor="@android:color/black"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:id="@+id/SaturdayLunchTitle"
+                    android:layout_width="136dp"
+                    android:layout_height="24dp"
+                    android:layout_below="@+id/Nutrition"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="Lunch"
+                    android:textColor="@android:color/black"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:id="@+id/SaturdayDinnerTitle"
+                    android:layout_width="136dp"
+                    android:layout_height="24dp"
+                    android:layout_below="@+id/Nutrition"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="Dinner"
+                    android:textColor="@android:color/black"
+                    android:textSize="13dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/SaturdaySpinners"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/SaturdayBreakfastSpinner"
+                    android:layout_width="136dp"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/BreakfastTitle"
+                    android:textSize="5sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.027"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.38" />
+
+                <Spinner
+                    android:id="@+id/SaturdayLunchSpinner"
+                    android:layout_width="136dp"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/DinnerTitle"
+                    android:textSize="5sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.972"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.38" />
+
+                <Spinner
+                    android:id="@+id/SaturdayDinnerSpinner"
+                    android:layout_width="136dp"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/BreakfastTitle"
+                    android:layout_marginEnd="14dp"
+                    android:layout_marginRight="14dp"
+                    android:textSize="5sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.38" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </android.support.constraint.ConstraintLayout>

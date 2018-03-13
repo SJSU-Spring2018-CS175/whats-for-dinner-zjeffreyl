@@ -9,34 +9,148 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.ExpandableListView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
-public class Meals extends AppCompatActivity {
+public class Meals extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
-    String[] days = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
-    public ArrayList<String> recipeOptions;
+    Spinner breakfastSpinnerSunday;
+    Spinner lunchSpinnerSunday;
+    Spinner dinnerSpinnerSunday;
+    Spinner breakfastSpinnerMonday;
+    Spinner lunchSpinnerMonday;
+    Spinner dinnerSpinnerMonday;
+    Spinner breakfastSpinnerTuesday;
+    Spinner lunchSpinnerTuesday;
+    Spinner dinnerSpinnerTuesday;
+    Spinner breakfastSpinnerWednesday;
+    Spinner lunchSpinnerWednesday;
+    Spinner dinnerSpinnerWednesday;
+    Spinner breakfastSpinnerThursday;
+    Spinner lunchSpinnerThursday;
+    Spinner dinnerSpinnerThursday;
+    Spinner breakfastSpinnerFriday;
+    Spinner lunchSpinnerFriday;
+    Spinner dinnerSpinnerFriday;
+    Spinner breakfastSpinnerSaturday;
+    Spinner lunchSpinnerSaturday;
+    Spinner dinnerSpinnerSaturday;
+
+
+    public ArrayList<String> recipeOptions = new ArrayList<>();
     File fileName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meals);
         fileName = new File(getFilesDir(), "recipeFile");
-        ListView listView = (ListView)findViewById(R.id.DayMeals);
 
-        CustomAdapter customAdapter = new CustomAdapter(recipeOptions);
-        listView.setAdapter(customAdapter);
+        breakfastSpinnerSunday = (Spinner) findViewById(R.id.SundayBreakfastSpinner);
+        lunchSpinnerSunday = (Spinner) findViewById(R.id.SundayLunchSpinner);
+        dinnerSpinnerSunday = (Spinner) findViewById(R.id.SundayDinnerSpinner);
+        breakfastSpinnerMonday = (Spinner) findViewById(R.id.MondayBreakfastSpinner);
+        lunchSpinnerMonday = (Spinner) findViewById(R.id.MondayLunchSpinner);
+        dinnerSpinnerMonday = (Spinner) findViewById(R.id.MondayDinnerSpinner);
+        breakfastSpinnerTuesday = (Spinner) findViewById(R.id.TuesdayBreakfastSpinner);
+        lunchSpinnerTuesday = (Spinner) findViewById(R.id.TuesdayLunchSpinner);
+        dinnerSpinnerTuesday = (Spinner) findViewById(R.id.TuesdayDinnerSpinner);
+        breakfastSpinnerWednesday = (Spinner) findViewById(R.id.WednesdayBreakfastSpinner);
+        lunchSpinnerWednesday = (Spinner) findViewById(R.id.WednesdayLunchSpinner);
+        dinnerSpinnerWednesday = (Spinner) findViewById(R.id.WednesdayDinnerSpinner);
+        breakfastSpinnerThursday = (Spinner) findViewById(R.id.ThursdayBreakfastSpinner);
+        lunchSpinnerThursday = (Spinner) findViewById(R.id.ThursdayLunchSpinner);
+        dinnerSpinnerThursday = (Spinner) findViewById(R.id.ThursdayDinnerSpinner);
+        breakfastSpinnerFriday = (Spinner) findViewById(R.id.FridayBreakfastSpinner);
+        lunchSpinnerFriday = (Spinner) findViewById(R.id.FridayLunchSpinner);
+        dinnerSpinnerFriday = (Spinner) findViewById(R.id.FridayDinnerSpinner);
+        breakfastSpinnerSaturday = (Spinner) findViewById(R.id.SaturdayBreakfastSpinner);
+        lunchSpinnerSaturday = (Spinner) findViewById(R.id.SaturdayLunchSpinner);
+        dinnerSpinnerSaturday = (Spinner) findViewById(R.id.SaturdayDinnerSpinner);
+
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+
+        if(intent.hasExtra("recipeOptions")) {
+            recipeOptions = (ArrayList<String>) bundle.getStringArrayList("recipeOptions");
+        }else {
+            if (!recipeOptions.contains("Eating out")) {
+                recipeOptions.add("Eating out");
+            }
+        }
+
+        if(intent.hasExtra("selectedRecipeName")) {
+            String selectedRecipeName = (String) bundle.getString("selectedRecipeName");
+            //added one item to recipe
+            recipeOptions.add(selectedRecipeName);
+            bundle.remove("selectedRecipeName");
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ArrayAdapter<String> adapter =  new ArrayAdapter<String>(getApplicationContext(), R.layout.custom_spinner_view, recipeOptions);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        breakfastSpinnerSunday.setAdapter(adapter);
+        lunchSpinnerSunday.setAdapter(adapter);
+        dinnerSpinnerSunday.setAdapter(adapter);
+
+        breakfastSpinnerMonday.setAdapter(adapter);
+        lunchSpinnerMonday.setAdapter(adapter);
+        dinnerSpinnerMonday.setAdapter(adapter);
+
+        breakfastSpinnerTuesday.setAdapter(adapter);
+        lunchSpinnerTuesday.setAdapter(adapter);
+        dinnerSpinnerTuesday.setAdapter(adapter);
+
+        breakfastSpinnerWednesday.setAdapter(adapter);
+        lunchSpinnerWednesday.setAdapter(adapter);
+        dinnerSpinnerWednesday.setAdapter(adapter);
+
+        breakfastSpinnerThursday.setAdapter(adapter);
+        lunchSpinnerThursday.setAdapter(adapter);
+        dinnerSpinnerThursday.setAdapter(adapter);
+
+        breakfastSpinnerFriday.setAdapter(adapter);
+        lunchSpinnerFriday.setAdapter(adapter);
+        dinnerSpinnerFriday.setAdapter(adapter);
+
+        breakfastSpinnerSaturday.setAdapter(adapter);
+        lunchSpinnerSaturday.setAdapter(adapter);
+        dinnerSpinnerSaturday.setAdapter(adapter);
+        //////////////////////////////////////////////////////////
+        breakfastSpinnerSunday.setOnItemSelectedListener(this);
+        lunchSpinnerSunday.setOnItemSelectedListener(this);
+        dinnerSpinnerSunday.setOnItemSelectedListener(this);
+
+        breakfastSpinnerMonday.setOnItemSelectedListener(this);
+        lunchSpinnerMonday.setOnItemSelectedListener(this);
+        dinnerSpinnerMonday.setOnItemSelectedListener(this);
+
+        breakfastSpinnerTuesday.setOnItemSelectedListener(this);
+        lunchSpinnerTuesday.setOnItemSelectedListener(this);
+        dinnerSpinnerTuesday.setOnItemSelectedListener(this);
+
+        breakfastSpinnerWednesday.setOnItemSelectedListener(this);
+        lunchSpinnerWednesday.setOnItemSelectedListener(this);
+        dinnerSpinnerWednesday.setOnItemSelectedListener(this);
+
+        breakfastSpinnerThursday.setOnItemSelectedListener(this);
+        lunchSpinnerThursday.setOnItemSelectedListener(this);
+        dinnerSpinnerThursday.setOnItemSelectedListener(this);
+
+        breakfastSpinnerFriday.setOnItemSelectedListener(this);
+        lunchSpinnerFriday.setOnItemSelectedListener(this);
+        dinnerSpinnerFriday.setOnItemSelectedListener(this);
+
+        breakfastSpinnerSaturday.setOnItemSelectedListener(this);
+        lunchSpinnerSaturday.setOnItemSelectedListener(this);
+        dinnerSpinnerSaturday.setOnItemSelectedListener(this);
     }
 
     @Override
@@ -48,98 +162,17 @@ public class Meals extends AppCompatActivity {
         intent.putExtras(b);
     }
 
-
-    public class CustomAdapter extends BaseAdapter implements AdapterView.OnItemSelectedListener {
-
-        //Displayed list of options
-        public ArrayList<String> recipeOptions;
-        ArrayAdapter<String> adapter;
-        //Recipe selected from Recipes
-        String selectedRecipeName;
-        Spinner breakfastSpinner;
-        Spinner lunchSpinner;
-        Spinner dinnerSpinner;
-
-        public CustomAdapter(ArrayList<String> recipeOptions){
-            this.recipeOptions = recipeOptions;
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        if(adapterView.getItemAtPosition(i).equals("Eating out")){
+            return;
+        }else {
+            recipeOptions.remove(adapterView.getItemAtPosition(i));
         }
+    }
 
-        @Override
-        public int getCount() {
-            return days.length;
-        }
-
-        @Override
-        public Object getItem(int i) {
-            return recipeOptions.get(i);
-        }
-
-        @Override
-        public long getItemId(int i) {
-            return i;
-        }
-
-        @Override
-        public View getView(int i, View view, ViewGroup viewGroup) {
-            view = getLayoutInflater().inflate(R.layout.customlayout, null);
-
-            recipeOptions = new ArrayList<>();
-            Intent intent = getIntent();
-            Bundle bundle = intent.getExtras();
-
-            if(intent.hasExtra("recipeOptions")) {
-                recipeOptions = (ArrayList<String>) bundle.getStringArrayList("recipeOptions");
-            }else {
-                if (!recipeOptions.contains("Eating out")) {
-                    recipeOptions.add("Eating out");
-                }
-            }
-
-            if(intent.hasExtra("selectedRecipeName")) {
-                selectedRecipeName = (String) bundle.getString("selectedRecipeName");
-                //added one item to recipe
-                recipeOptions.add(selectedRecipeName);
-                bundle.remove("selectedRecipeName");
-            }
-
-            TextView dayTitle = (TextView)view.findViewById(R.id.Day);
-            breakfastSpinner = (Spinner) view.findViewById(R.id.BreakfastSpinner);
-            lunchSpinner = (Spinner) view.findViewById(R.id.LunchSpinner);
-            dinnerSpinner = (Spinner) view.findViewById(R.id.DinnerSpinner);
-
-            Button nutritionManager = (Button)view.findViewById(R.id.Nutrition);
-
-            adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.custom_spinner_view, recipeOptions);
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-            breakfastSpinner.setAdapter(adapter);
-            lunchSpinner.setAdapter(adapter);
-            dinnerSpinner.setAdapter(adapter);
-
-            breakfastSpinner.setOnItemSelectedListener(this);
-            lunchSpinner.setOnItemSelectedListener(this);
-            dinnerSpinner.setOnItemSelectedListener(this);
-            //set days
-            dayTitle.setText(days[i]);
-            return view;
-        }
-
-        @Override
-        public void onItemSelected(AdapterView<?> parent, View view,
-                                   int pos, long id) {
-            // An item was selected. You can retrieve the selected item using
-            // parent.getItemAtPosition(pos)
-            if(recipeOptions.size() <= 1){
-                return;
-            }else {
-                recipeOptions.remove(parent.getItemAtPosition(pos));
-            }
-        }
-
-        @Override
-        public void onNothingSelected(AdapterView<?> parent) {
-
-        }
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
 }

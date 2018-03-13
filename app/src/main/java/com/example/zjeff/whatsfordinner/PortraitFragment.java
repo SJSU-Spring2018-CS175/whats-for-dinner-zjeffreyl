@@ -52,6 +52,7 @@ public class PortraitFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intentShortClick = new Intent(getActivity(),Meals.class);
                 Bundle b1 = new Bundle();
+                //Names
                 b1.putString("selectedRecipeName", savedRecipes.get(i).getName());
                 intentShortClick.putExtras(b1);
                 Toast.makeText(getActivity(), "Entered " + savedRecipes.get(i).getName() + " into meals", Toast.LENGTH_LONG).show();
