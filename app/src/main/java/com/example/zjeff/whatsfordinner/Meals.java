@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -164,10 +165,13 @@ public class Meals extends AppCompatActivity implements AdapterView.OnItemSelect
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        Intent intent = new Intent(getApplicationContext(), Groceries.class);
+        Bundle b = new Bundle();
         if(adapterView.getItemAtPosition(i).equals("Eating out")){
             return;
         }else {
             recipeOptions.remove(adapterView.getItemAtPosition(i));
+            Toast.makeText( getApplicationContext(), "Choosen " + adapterView.getItemAtPosition(i), Toast.LENGTH_LONG).show();
         }
     }
 

@@ -17,6 +17,7 @@ import java.util.List;
 
 public class Groceries extends AppCompatActivity {
     ArrayList<Ingredient> list;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         list = new ArrayList<>();
