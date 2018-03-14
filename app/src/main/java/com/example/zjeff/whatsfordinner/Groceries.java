@@ -20,7 +20,9 @@ public class Groceries extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Bundle b = getIntent().getExtras();
         list = new ArrayList<>();
+        list = (ArrayList<Ingredient>)b.getSerializable("GroceriesIngredients");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_groceries);
         SwipeMenuListView listView = (SwipeMenuListView) findViewById(R.id.listView);

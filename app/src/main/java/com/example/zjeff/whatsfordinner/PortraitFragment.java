@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -25,6 +26,7 @@ public class PortraitFragment extends Fragment {
 
     ArrayList<RecipeData> savedRecipes;
     ArrayList<String> savedRecipesName;
+    ArrayList<RecipeData> sendingRecipes;
 
     public PortraitFragment() {
     }
@@ -47,16 +49,14 @@ public class PortraitFragment extends Fragment {
         ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, savedRecipesName);
         listView.setAdapter(listViewAdapter);
 
+        sendingRecipes = new ArrayList<RecipeData>();
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intentShortClick = new Intent(getActivity(),Meals.class);
-                Bundle b1 = new Bundle();
                 //Names
-                b1.putSerializable("selectedRecipeObject", savedRecipes.get(i));
-                intentShortClick.putExtras(b1);
-                Toast.makeText(getActivity(), "Entered " + savedRecipes.get(i).getName() + " into meals", Toast.LENGTH_LONG).show();
-                startActivity(intentShortClick);
+                sendingRecipes.add(savedRecipes.get(i));
+                Toast.makeText(getActivity(), "Adding " + savedRecipes.get(i).getName() + " into meals", Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -73,6 +73,17 @@ public class PortraitFragment extends Fragment {
             }
         });
 
+        Button button = (Button)view.findViewById(R.id.GoToMeals);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentShortClick = new Intent(getActivity(),Meals.class);
+                Bundle b1 = new Bundle();
+                b1.putSerializable("selectedRecipeObjects", sendingRecipes);
+                intentShortClick.putExtras(b1);
+                startActivity(intentShortClick);
+            }
+        });
         return view;
     }
 }
