@@ -15,10 +15,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
 
-public class Meals extends AppCompatActivity/* implements AdapterView.OnItemSelectedListener*/{
+public class Meals extends AppCompatActivity{
 
+    ArrayAdapter<String> adapter;
     Spinner breakfastSpinnerSunday;
     Spinner lunchSpinnerSunday;
     Spinner dinnerSpinnerSunday;
@@ -41,13 +48,18 @@ public class Meals extends AppCompatActivity/* implements AdapterView.OnItemSele
     Spinner lunchSpinnerSaturday;
     Spinner dinnerSpinnerSaturday;
 
-    public ArrayList<String> recipeOptions = new ArrayList<>();
+    public ArrayList<RecipeData> recipeOptions = new ArrayList<>();
+    public ArrayList<String> recipeOptionsName = new ArrayList<>();
     File fileName;
+    File fileName2;
+    RecipeData eatingOut;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meals);
         fileName = new File(getFilesDir(), "recipeFile");
+        fileName2 = new File(getFilesDir(), "mealFile");
+        eatingOut = new RecipeData("Eating Out", null, null);
 
         breakfastSpinnerSunday = (Spinner) findViewById(R.id.SundayBreakfastSpinner);
         lunchSpinnerSunday = (Spinner) findViewById(R.id.SundayLunchSpinner);
@@ -74,67 +86,58 @@ public class Meals extends AppCompatActivity/* implements AdapterView.OnItemSele
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
+        //Comes second time around
         if(intent.hasExtra("recipeOptions")) {
-            recipeOptions = (ArrayList<String>) bundle.getStringArrayList("recipeOptions");
+            recipeOptions = (ArrayList<RecipeData>) bundle.getSerializable("recipeOptions");
         }else {
-            if (!recipeOptions.contains("Eating out")) {
-                recipeOptions.add("Eating out");
+            if (!recipeOptions.contains(eatingOut)) {
+                recipeOptions.add(eatingOut);
             }
         }
 
-        if(intent.hasExtra("selectedRecipeName")) {
-            String selectedRecipeName = (String) bundle.getString("selectedRecipeName");
+        //getting the recipe object
+        if(intent.hasExtra("selectedRecipeObject")) {
+            RecipeData selectedRecipeObject = (RecipeData) bundle.getSerializable("selectedRecipeObject");
             //added one item to recipe
-            recipeOptions.add(selectedRecipeName);
-            bundle.remove("selectedRecipeName");
+            recipeOptions.add(selectedRecipeObject);
+            bundle.remove("selectedRecipeObject");
         }
+        for(int i = 0; i < recipeOptions.size(); i++){
+            recipeOptionsName.add(recipeOptions.get(i).getName());
+        }
+
+        //adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.custom_spinner_view, recipeOptions);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        ArrayAdapter<String> adapter =  new ArrayAdapter<String>(getApplicationContext(), R.layout.custom_spinner_view, recipeOptions);
+        adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.custom_spinner_view, recipeOptionsName);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
+        try {
+            FileInputStream fileInputStream = new FileInputStream(fileName2);
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+            ArrayList<RecipeData> savedRecipeList = (ArrayList<RecipeData>) objectInputStream.readObject();
+            ArrayList<Ingredient> savedIngredientsList = (ArrayList<Ingredient>) objectInputStream.readObject();
+            objectInputStream.close();
+        }catch(Exception exception){
+        exception.printStackTrace();
+        }
         breakfastSpinnerSunday.setAdapter(adapter);
         lunchSpinnerSunday.setAdapter(adapter);
         dinnerSpinnerSunday.setAdapter(adapter);
-
-        breakfastSpinnerMonday.setAdapter(adapter);
-        lunchSpinnerMonday.setAdapter(adapter);
-        dinnerSpinnerMonday.setAdapter(adapter);
-
-        breakfastSpinnerTuesday.setAdapter(adapter);
-        lunchSpinnerTuesday.setAdapter(adapter);
-        dinnerSpinnerTuesday.setAdapter(adapter);
-
-        breakfastSpinnerWednesday.setAdapter(adapter);
-        lunchSpinnerWednesday.setAdapter(adapter);
-        dinnerSpinnerWednesday.setAdapter(adapter);
-
-        breakfastSpinnerThursday.setAdapter(adapter);
-        lunchSpinnerThursday.setAdapter(adapter);
-        dinnerSpinnerThursday.setAdapter(adapter);
-
-        breakfastSpinnerFriday.setAdapter(adapter);
-        lunchSpinnerFriday.setAdapter(adapter);
-        dinnerSpinnerFriday.setAdapter(adapter);
-
-        breakfastSpinnerSaturday.setAdapter(adapter);
-        lunchSpinnerSaturday.setAdapter(adapter);
-        dinnerSpinnerSaturday.setAdapter(adapter);
-        //////////////////////////////////////////////////////////
-
         breakfastSpinnerSunday.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getApplicationContext(), Groceries.class);
                 Bundle b = new Bundle();
-                if(adapterView.getItemAtPosition(i).equals("Eating out")){
+                if(recipeOptions.get(i).equals(eatingOut)){
                     return;
                 }else {
-                    //recipeOptions.remove(adapterView.getItemAtPosition(i));
-                    Toast.makeText( getApplicationContext(), "Choosen " + adapterView.getItemAtPosition(i), Toast.LENGTH_LONG).show();
+                    recipeOptionsName.remove(i);
+                    recipeOptions.remove(i);
+                    Toast.makeText(getApplicationContext(),"" + i, Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -152,7 +155,7 @@ public class Meals extends AppCompatActivity/* implements AdapterView.OnItemSele
                     return;
                 }else {
                     recipeOptions.remove(adapterView.getItemAtPosition(i));
-                    Toast.makeText( getApplicationContext(), "Choosen " + adapterView.getItemAtPosition(i), Toast.LENGTH_LONG).show();
+                    recipeOptions.remove(adapterView.getItemIdAtPosition(i));
                 }
             }
 
@@ -170,7 +173,7 @@ public class Meals extends AppCompatActivity/* implements AdapterView.OnItemSele
                     return;
                 }else {
                     recipeOptions.remove(adapterView.getItemAtPosition(i));
-                    Toast.makeText( getApplicationContext(), "Choosen " + adapterView.getItemAtPosition(i), Toast.LENGTH_LONG).show();
+                    recipeOptions.remove(adapterView.getItemIdAtPosition(i));
                 }
             }
 
@@ -180,29 +183,359 @@ public class Meals extends AppCompatActivity/* implements AdapterView.OnItemSele
             }
         });
 
-        /*breakfastSpinnerMonday.setOnItemSelectedListener(this);
-        lunchSpinnerMonday.setOnItemSelectedListener(this);
-        dinnerSpinnerMonday.setOnItemSelectedListener(this);
+        breakfastSpinnerMonday.setAdapter(adapter);
+        lunchSpinnerMonday.setAdapter(adapter);
+        dinnerSpinnerMonday.setAdapter(adapter);
+        breakfastSpinnerMonday.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getApplicationContext(), Groceries.class);
+                Bundle b = new Bundle();
+                if(recipeOptions.get(i).equals(eatingOut)){
+                    return;
+                }else {
+                    recipeOptionsName.remove(i);
+                    recipeOptions.remove(i);
+                    Toast.makeText(getApplicationContext(),"" + i, Toast.LENGTH_LONG).show();
+                }
+            }
 
-        breakfastSpinnerTuesday.setOnItemSelectedListener(this);
-        lunchSpinnerTuesday.setOnItemSelectedListener(this);
-        dinnerSpinnerTuesday.setOnItemSelectedListener(this);
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
-        breakfastSpinnerWednesday.setOnItemSelectedListener(this);
-        lunchSpinnerWednesday.setOnItemSelectedListener(this);
-        dinnerSpinnerWednesday.setOnItemSelectedListener(this);
+            }
+        });
+        lunchSpinnerMonday.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getApplicationContext(), Groceries.class);
+                Bundle b = new Bundle();
+                if(adapterView.getItemAtPosition(i).equals("Eating out")){
+                    return;
+                }else {
+                    recipeOptions.remove(adapterView.getItemAtPosition(i));
+                    recipeOptions.remove(adapterView.getItemIdAtPosition(i));
+                }
+            }
 
-        breakfastSpinnerThursday.setOnItemSelectedListener(this);
-        lunchSpinnerThursday.setOnItemSelectedListener(this);
-        dinnerSpinnerThursday.setOnItemSelectedListener(this);
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
-        breakfastSpinnerFriday.setOnItemSelectedListener(this);
-        lunchSpinnerFriday.setOnItemSelectedListener(this);
-        dinnerSpinnerFriday.setOnItemSelectedListener(this);
+            }
+        });
+        dinnerSpinnerMonday.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getApplicationContext(), Groceries.class);
+                Bundle b = new Bundle();
+                if(adapterView.getItemAtPosition(i).equals("Eating out")){
+                    return;
+                }else {
+                    recipeOptions.remove(adapterView.getItemAtPosition(i));
+                    recipeOptions.remove(adapterView.getItemIdAtPosition(i));
+                }
+            }
 
-        breakfastSpinnerSaturday.setOnItemSelectedListener(this);
-        lunchSpinnerSaturday.setOnItemSelectedListener(this);
-        dinnerSpinnerSaturday.setOnItemSelectedListener(this);*/
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        breakfastSpinnerTuesday.setAdapter(adapter);
+        lunchSpinnerTuesday.setAdapter(adapter);
+        dinnerSpinnerTuesday.setAdapter(adapter);
+        breakfastSpinnerTuesday.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getApplicationContext(), Groceries.class);
+                Bundle b = new Bundle();
+                if(recipeOptions.get(i).equals(eatingOut)){
+                    return;
+                }else {
+                    recipeOptionsName.remove(i);
+                    recipeOptions.remove(i);
+                    Toast.makeText(getApplicationContext(),"" + i, Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        lunchSpinnerTuesday.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getApplicationContext(), Groceries.class);
+                Bundle b = new Bundle();
+                if(adapterView.getItemAtPosition(i).equals("Eating out")){
+                    return;
+                }else {
+                    recipeOptions.remove(adapterView.getItemAtPosition(i));
+                    recipeOptions.remove(adapterView.getItemIdAtPosition(i));
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        dinnerSpinnerTuesday.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getApplicationContext(), Groceries.class);
+                Bundle b = new Bundle();
+                if(adapterView.getItemAtPosition(i).equals("Eating out")){
+                    return;
+                }else {
+                    recipeOptions.remove(adapterView.getItemAtPosition(i));
+                    recipeOptions.remove(adapterView.getItemIdAtPosition(i));
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        breakfastSpinnerWednesday.setAdapter(adapter);
+        lunchSpinnerWednesday.setAdapter(adapter);
+        dinnerSpinnerWednesday.setAdapter(adapter);
+        breakfastSpinnerWednesday.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getApplicationContext(), Groceries.class);
+                Bundle b = new Bundle();
+                if(recipeOptions.get(i).equals(eatingOut)){
+                    return;
+                }else {
+                    recipeOptionsName.remove(i);
+                    recipeOptions.remove(i);
+                    Toast.makeText(getApplicationContext(),"" + i, Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        lunchSpinnerWednesday.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getApplicationContext(), Groceries.class);
+                Bundle b = new Bundle();
+                if(adapterView.getItemAtPosition(i).equals("Eating out")){
+                    return;
+                }else {
+                    recipeOptions.remove(adapterView.getItemAtPosition(i));
+                    recipeOptions.remove(adapterView.getItemIdAtPosition(i));
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        dinnerSpinnerWednesday.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getApplicationContext(), Groceries.class);
+                Bundle b = new Bundle();
+                if(adapterView.getItemAtPosition(i).equals("Eating out")){
+                    return;
+                }else {
+                    recipeOptions.remove(adapterView.getItemAtPosition(i));
+                    recipeOptions.remove(adapterView.getItemIdAtPosition(i));
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        breakfastSpinnerThursday.setAdapter(adapter);
+        lunchSpinnerThursday.setAdapter(adapter);
+        dinnerSpinnerThursday.setAdapter(adapter);
+        breakfastSpinnerThursday.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getApplicationContext(), Groceries.class);
+                Bundle b = new Bundle();
+                if(recipeOptions.get(i).equals(eatingOut)){
+                    return;
+                }else {
+                    recipeOptionsName.remove(i);
+                    recipeOptions.remove(i);
+                    Toast.makeText(getApplicationContext(),"" + i, Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        lunchSpinnerThursday.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getApplicationContext(), Groceries.class);
+                Bundle b = new Bundle();
+                if(adapterView.getItemAtPosition(i).equals("Eating out")){
+                    return;
+                }else {
+                    recipeOptions.remove(adapterView.getItemAtPosition(i));
+                    recipeOptions.remove(adapterView.getItemIdAtPosition(i));
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        dinnerSpinnerThursday.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getApplicationContext(), Groceries.class);
+                Bundle b = new Bundle();
+                if(adapterView.getItemAtPosition(i).equals("Eating out")){
+                    return;
+                }else {
+                    recipeOptions.remove(adapterView.getItemAtPosition(i));
+                    recipeOptions.remove(adapterView.getItemIdAtPosition(i));
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        breakfastSpinnerFriday.setAdapter(adapter);
+        lunchSpinnerFriday.setAdapter(adapter);
+        dinnerSpinnerFriday.setAdapter(adapter);
+        breakfastSpinnerFriday.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getApplicationContext(), Groceries.class);
+                Bundle b = new Bundle();
+                if(recipeOptions.get(i).equals(eatingOut)){
+                    return;
+                }else {
+                    recipeOptionsName.remove(i);
+                    recipeOptions.remove(i);
+                    Toast.makeText(getApplicationContext(),"" + i, Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        lunchSpinnerFriday.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getApplicationContext(), Groceries.class);
+                Bundle b = new Bundle();
+                if(adapterView.getItemAtPosition(i).equals("Eating out")){
+                    return;
+                }else {
+                    recipeOptions.remove(adapterView.getItemAtPosition(i));
+                    recipeOptions.remove(adapterView.getItemIdAtPosition(i));
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        dinnerSpinnerFriday.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getApplicationContext(), Groceries.class);
+                Bundle b = new Bundle();
+                if(adapterView.getItemAtPosition(i).equals("Eating out")){
+                    return;
+                }else {
+                    recipeOptions.remove(adapterView.getItemAtPosition(i));
+                    recipeOptions.remove(adapterView.getItemIdAtPosition(i));
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        breakfastSpinnerSaturday.setAdapter(adapter);
+        lunchSpinnerSaturday.setAdapter(adapter);
+        dinnerSpinnerSaturday.setAdapter(adapter);
+        breakfastSpinnerSaturday.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getApplicationContext(), Groceries.class);
+                Bundle b = new Bundle();
+                if(recipeOptions.get(i).equals(eatingOut)){
+                    return;
+                }else {
+                    recipeOptionsName.remove(i);
+                    recipeOptions.remove(i);
+                    Toast.makeText(getApplicationContext(),"" + i, Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        lunchSpinnerSaturday.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getApplicationContext(), Groceries.class);
+                Bundle b = new Bundle();
+                if(adapterView.getItemAtPosition(i).equals("Eating out")){
+                    return;
+                }else {
+                    recipeOptions.remove(adapterView.getItemAtPosition(i));
+                    recipeOptions.remove(adapterView.getItemIdAtPosition(i));
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        dinnerSpinnerSaturday.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getApplicationContext(), Groceries.class);
+                Bundle b = new Bundle();
+                if(adapterView.getItemAtPosition(i).equals("Eating out")){
+                    return;
+                }else {
+                    recipeOptions.remove(adapterView.getItemAtPosition(i));
+                    recipeOptions.remove(adapterView.getItemIdAtPosition(i));
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 
     @Override
@@ -210,7 +543,32 @@ public class Meals extends AppCompatActivity/* implements AdapterView.OnItemSele
         super.onStop();
         Intent intent = new Intent(getApplicationContext(), Meals.class);
         Bundle b = new Bundle();
-        b.putStringArrayList("recipeOptions", recipeOptions);
+        b.putSerializable("recipeOptions", recipeOptions);
         intent.putExtras(b);
+        try {
+            FileOutputStream fos = new FileOutputStream(fileName2);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(recipeOptions);
+            oos.close();
+        }catch(Exception exception){
+            exception.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Intent intent = new Intent(getApplicationContext(), Meals.class);
+        Bundle b = new Bundle();
+        b.putSerializable("recipeOptions", recipeOptions);
+        intent.putExtras(b);
+        try {
+            FileOutputStream fos = new FileOutputStream(fileName2);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(recipeOptions);
+            oos.close();
+        }catch(Exception exception){
+            exception.printStackTrace();
+        }
     }
 }
