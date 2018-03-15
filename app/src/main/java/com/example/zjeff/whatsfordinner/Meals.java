@@ -124,18 +124,10 @@ public class Meals extends AppCompatActivity{
             recipeOptionsName.add(recipeOptions.get(i).getName());
         }
 
-        //adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.custom_spinner_view, recipeOptions);
-    /*}
-
-    @Override
-    protected void onResume() {
-        super.onResume();*/
         adapter = new ArrayAdapter<String>(this, R.layout.custom_spinner_view, recipeOptionsName);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        int counter =0;
         for(Spinner s: spinners){
-            counter++;
             s.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {

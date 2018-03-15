@@ -20,14 +20,21 @@ public class Groceries extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Bundle b = getIntent().getExtras();
+        //Bundle b = getIntent().getExtras();
         list = new ArrayList<>();
-        list = (ArrayList<Ingredient>)b.getSerializable("GroceriesIngredients");
+        list = (ArrayList<Ingredient>) getIntent().getExtras().getSerializable("GroceriesIngredients");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_groceries);
         SwipeMenuListView listView = (SwipeMenuListView) findViewById(R.id.listView);
 
-        ArrayAdapter adapter = new ArrayAdapter(Groceries.this, android.R.layout.simple_list_item_1, list);
+        ArrayList<String> formatted = new ArrayList<>();
+        for(int i = 0 ; i < list.size(); i++){
+            if(list.get(i).getAmount() != 0) {
+                formatted.add(list.get(i).getName() + " ( " + list.get(i).getAmount() + " " + list.get(i).getUnit().toString() + " )");
+            }
+        }
+
+        ArrayAdapter adapter = new ArrayAdapter(Groceries.this, android.R.layout.simple_list_item_1, formatted);
         listView.setAdapter(adapter);
 
         //Sourced from

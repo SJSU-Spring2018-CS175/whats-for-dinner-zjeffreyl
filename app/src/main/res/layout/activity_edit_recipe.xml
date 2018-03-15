@@ -38,8 +38,8 @@
         android:layout_marginTop="8dp"
         android:fontFamily="cursive"
         android:gravity="center"
-        android:onClick="addRecipe"
-        android:text="Add"
+        android:onClick="editRecipe"
+        android:text="Edit Recipe"
         android:textColor="@android:color/black"
         android:textSize="15sp"
         android:textStyle="bold"
@@ -48,8 +48,7 @@
         app:layout_constraintHorizontal_bias="0.931"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.194"
-        tools:text="Edit Recipe" />
+        app:layout_constraintVertical_bias="0.194" />
 
     <TextView
         android:id="@+id/Ingredients"

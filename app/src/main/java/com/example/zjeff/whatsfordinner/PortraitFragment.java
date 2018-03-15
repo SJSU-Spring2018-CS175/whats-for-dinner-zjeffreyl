@@ -27,6 +27,7 @@ public class PortraitFragment extends Fragment {
     ArrayList<RecipeData> savedRecipes;
     ArrayList<String> savedRecipesName;
     ArrayList<RecipeData> sendingRecipes;
+    ArrayList<Ingredient> ingredients;
 
     public PortraitFragment() {
     }
@@ -41,9 +42,15 @@ public class PortraitFragment extends Fragment {
         final Bundle bundle = intent.getExtras();
         savedRecipes = (ArrayList<RecipeData>)bundle.getSerializable("savedRecipes");
 
+        ingredients = new ArrayList<>();
+        for(int i = 0 ; i < savedRecipes.size(); i++){
+            ingredients.addAll(savedRecipes.get(i).getIngredients());
+        }
+
         for(int i = 0; i < savedRecipes.size(); i++){
             savedRecipesName.add(savedRecipes.get(i).getName());
         }
+
         View view = inflater.inflate(R.layout.fragment_portrait, container, false);
         ListView listView = (ListView) view.findViewById(R.id.recipeListPortrait);
         ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, savedRecipesName);
@@ -82,6 +89,18 @@ public class PortraitFragment extends Fragment {
                 b1.putSerializable("selectedRecipeObjects", sendingRecipes);
                 intentShortClick.putExtras(b1);
                 startActivity(intentShortClick);
+            }
+        });
+
+        Button button1 = (Button)view.findViewById(R.id.GoToGroceries);
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentGroceries = new Intent(getActivity(), Groceries.class);
+                Bundle b2 = new Bundle();
+                b2.putSerializable("GroceriesIngredients", ingredients);
+                intentGroceries.putExtras(b2);
+                startActivity(intentGroceries);
             }
         });
         return view;

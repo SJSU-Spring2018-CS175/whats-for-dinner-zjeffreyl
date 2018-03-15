@@ -80,10 +80,10 @@ public class NewRecipe extends AppCompatActivity {
             for(int i = 0 ; i < savedRecipeList.size(); i ++){
                 savedRecipes.add(savedRecipeList.get(i));
             }
-            savedIngredients.clear();
+            /*savedIngredients.clear();
             for(int i = 0 ; i < savedIngredientsList.size(); i++){
                 savedIngredients.add(savedIngredientsList.get(i));
-            }
+            }*/
         }catch(Exception exception){
             exception.printStackTrace();
         }
@@ -232,7 +232,7 @@ public class NewRecipe extends AppCompatActivity {
         //name, list of ingredients, descriptions
         //if another name found in save recipes do not add it
         boolean recipeExists = true;
-        if(savedRecipes.size() > 1) {
+        if(savedRecipes.size() >= 1) {
             for (int j = 0; j < savedRecipes.size(); j++) {
                 if (savedRecipes.get(j).getName().equals(recipeName)) {
                     Toast.makeText(getApplicationContext(), "Recipe already exists.", Toast.LENGTH_LONG).show();

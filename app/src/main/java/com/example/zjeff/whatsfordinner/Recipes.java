@@ -27,7 +27,7 @@ public class Recipes extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         savedRecipes = (ArrayList<RecipeData>)bundle.getSerializable("savedRecipes");
-        savedIngredients = (ArrayList<Ingredient>)bundle.getSerializable("savedIngredients");
+        //savedIngredients = (ArrayList<Ingredient>)bundle.getSerializable("savedIngredients");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipes);
@@ -44,5 +44,10 @@ public class Recipes extends AppCompatActivity {
             fragmentTransaction.replace(android.R.id.content, portraitFragment);
         }
         fragmentTransaction.commit();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
     }
 }
