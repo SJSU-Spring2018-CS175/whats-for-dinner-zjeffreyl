@@ -20,17 +20,37 @@ public class MainActivity extends AppCompatActivity {
 
     public static ArrayList<RecipeData> recipeDataBase;
     public static ArrayList<Ingredient> ingredientsDataBase;
+    public ArrayList<Ingredient> groceryIngredients;
+    public ArrayList<RecipeData> selectedRecipeObject;
     public File file;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Bundle bundle = getIntent().getExtras();
+        //Bundle bundle = getIntent().getExtras();
         recipeDataBase = new ArrayList<RecipeData>();
         ingredientsDataBase = new ArrayList<Ingredient>();
+        groceryIngredients = new ArrayList<>();
+        selectedRecipeObject = new ArrayList<>();
+
         file = new File(getFilesDir(), "recipeFile");
 
+        Intent intent = getIntent();
+        Bundle bundle1 = intent.getExtras();
+        if(intent.hasExtra("GroceriesIngredients")) {
+            ArrayList<Ingredient> groceries = (ArrayList<Ingredient>) getIntent().getExtras().getSerializable("GroceriesIngredients");
+            groceryIngredients.addAll(groceries);
+            bundle1.remove("GroceriesIngredients");
+        }
+
+        Intent intent1 = getIntent();
+        Bundle bundle2 = intent1.getExtras();
+        if(intent.hasExtra("selectedRecipeObjects")) {
+            ArrayList<RecipeData> selected = (ArrayList<RecipeData>) getIntent().getExtras().getSerializable("selectedRecipeObjects");
+            selectedRecipeObject.addAll(selected);
+            bundle2.remove("selectedRecipeObjects");
+        }
         Button button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,11 +91,17 @@ public class MainActivity extends AppCompatActivity {
 
     public void meals(View view){
         Intent intent = new Intent(this, Meals.class);
+        Bundle b2 = new Bundle();
+        b2.putSerializable("selectedRecipeObjects", selectedRecipeObject);
+        intent.putExtras(b2);
         startActivity(intent);
     }
 
     public void groceries(View view){
         Intent intent = new Intent(this, Groceries.class);
+        Bundle b2 = new Bundle();
+        b2.putSerializable("GroceriesIngredients", groceryIngredients);
+        intent.putExtras(b2);
         startActivity(intent);
     }
 

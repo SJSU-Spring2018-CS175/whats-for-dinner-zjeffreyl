@@ -96,11 +96,17 @@ public class PortraitFragment extends Fragment {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentGroceries = new Intent(getActivity(), Groceries.class);
+                Intent intentMain = new Intent(getActivity(), MainActivity.class);
                 Bundle b2 = new Bundle();
                 b2.putSerializable("GroceriesIngredients", ingredients);
-                intentGroceries.putExtras(b2);
-                startActivity(intentGroceries);
+                //intentMain.putExtras(b2);
+                //Intent intentMain2 = new Intent(getActivity(), MainActivity.class);
+                //Bundle b3 = new Bundle();
+                //intentMain.putExtras(b3);
+                b2.putSerializable("selectedRecipeObjects", sendingRecipes);
+                intentMain.putExtras(b2);
+                startActivity(intentMain);
+                //startActivity(intentMain2);
             }
         });
         return view;
