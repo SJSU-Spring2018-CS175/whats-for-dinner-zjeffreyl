@@ -49,6 +49,7 @@ public class Groceries extends AppCompatActivity {
             }
         }
 
+        //Source code and gradle build from github.com/baoyongzhang/SwipeMenuListView
         final ArrayAdapter adapter = new ArrayAdapter(Groceries.this, android.R.layout.simple_list_item_1, formatted);
         //Sourced from
         SwipeMenuCreator creator = new SwipeMenuCreator() {

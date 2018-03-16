@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -14,12 +15,25 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.TreeSet;
 
 public class NewRecipe extends AppCompatActivity {
     public ArrayList<RecipeData> savedRecipes;
     public ArrayList<Ingredient> savedIngredients;
+    public TreeSet<String> savedIngredientsNames;
     public File fileName;
 
+    AutoCompleteTextView ingred1name;
+    AutoCompleteTextView ingred2name;
+    AutoCompleteTextView ingred3name;
+    AutoCompleteTextView ingred4name;
+    AutoCompleteTextView ingred5name;
+    AutoCompleteTextView ingred6name;
+    AutoCompleteTextView ingred7name;
+    AutoCompleteTextView ingred8name;
+    AutoCompleteTextView ingred9name;
+    AutoCompleteTextView ingred10name;
     //UI data
     public ArrayList<Ingredient> newRecipeIngredients;
     @Override
@@ -33,6 +47,39 @@ public class NewRecipe extends AppCompatActivity {
         Bundle bundle = intent.getExtras();
         savedRecipes = (ArrayList<RecipeData>)bundle.getSerializable("savedRecipes");
         savedIngredients = (ArrayList<Ingredient>)bundle.getSerializable("savedIngredients");
+        savedIngredientsNames = new TreeSet<>();
+
+        for(int i = 0 ; i < savedRecipes.size(); i++){
+            for(int j = 0; j < savedRecipes.get(i).getIngredients().size(); j++) {
+                savedIngredientsNames.add(savedRecipes.get(i).getIngredients().get(j).getName());
+            }
+        }
+
+        ArrayList<String> arrayListIngredientNames = new ArrayList<>();
+        arrayListIngredientNames.addAll(savedIngredientsNames);
+
+        ingred1name = (AutoCompleteTextView)findViewById(R.id.ingredient1Name);
+        ingred2name = (AutoCompleteTextView)findViewById(R.id.ingredient2Name);
+        ingred3name = (AutoCompleteTextView)findViewById(R.id.ingredient3Name);
+        ingred4name = (AutoCompleteTextView)findViewById(R.id.ingredient4Name);
+        ingred5name = (AutoCompleteTextView)findViewById(R.id.ingredient5Name);
+        ingred6name = (AutoCompleteTextView)findViewById(R.id.ingredient6Name);
+        ingred7name = (AutoCompleteTextView)findViewById(R.id.ingredient7Name);
+        ingred8name = (AutoCompleteTextView)findViewById(R.id.ingredient8Name);
+        ingred9name = (AutoCompleteTextView)findViewById(R.id.ingredient9Name);
+        ingred10name = (AutoCompleteTextView)findViewById(R.id.ingredient10Name);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayListIngredientNames);
+        ingred1name.setAdapter(adapter);
+        ingred2name.setAdapter(adapter);
+        ingred3name.setAdapter(adapter);
+        ingred4name.setAdapter(adapter);
+        ingred5name.setAdapter(adapter);
+        ingred6name.setAdapter(adapter);
+        ingred7name.setAdapter(adapter);
+        ingred8name.setAdapter(adapter);
+        ingred9name.setAdapter(adapter);
+        ingred10name.setAdapter(adapter);
         //savedRecipes = new ArrayList<>();
         //savedIngredients = new ArrayList<>();
     }
@@ -94,17 +141,6 @@ public class NewRecipe extends AppCompatActivity {
         String recipeName = name.getText().toString();
 
         ArrayList<Ingredient> ingredients = new ArrayList<>();
-
-        AutoCompleteTextView ingred1name = (AutoCompleteTextView)findViewById(R.id.ingredient1Name);
-        AutoCompleteTextView ingred2name = (AutoCompleteTextView)findViewById(R.id.ingredient2Name);
-        AutoCompleteTextView ingred3name = (AutoCompleteTextView)findViewById(R.id.ingredient3Name);
-        AutoCompleteTextView ingred4name = (AutoCompleteTextView)findViewById(R.id.ingredient4Name);
-        AutoCompleteTextView ingred5name = (AutoCompleteTextView)findViewById(R.id.ingredient5Name);
-        AutoCompleteTextView ingred6name = (AutoCompleteTextView)findViewById(R.id.ingredient6Name);
-        AutoCompleteTextView ingred7name = (AutoCompleteTextView)findViewById(R.id.ingredient7Name);
-        AutoCompleteTextView ingred8name = (AutoCompleteTextView)findViewById(R.id.ingredient8Name);
-        AutoCompleteTextView ingred9name = (AutoCompleteTextView)findViewById(R.id.ingredient9Name);
-        AutoCompleteTextView ingred10name = (AutoCompleteTextView)findViewById(R.id.ingredient10Name);
 
         String ingredient1name = ingred1name.getText().toString();
         String ingredient2name = ingred2name.getText().toString();

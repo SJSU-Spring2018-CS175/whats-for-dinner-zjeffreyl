@@ -98,13 +98,11 @@
         app:layout_constraintVertical_bias="0.886" />
 
     <ScrollView
-        android:layout_width="159dp"
+        android:layout_width="189dp"
         android:layout_height="275dp"
         android:layout_marginBottom="46dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         android:layout_marginStart="36dp"
-        android:layout_marginLeft="36dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/Instructions"
@@ -121,28 +119,27 @@
                 android:orientation="horizontal">
 
                 <AutoCompleteTextView
-                    android:layout_width="70dp"
-                    android:layout_height="wrap_content"
                     android:id="@+id/ingredient1Name"
-                    android:singleLine="true"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
                     android:hint="ingredient"
-                    android:textSize="13sp"
-                    />
+                    android:singleLine="true"
+                    android:textSize="13sp" />
 
                 <EditText
                     android:id="@+id/ingredient1Amount"
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
                     android:hint="amount"
-                    android:textSize="6sp"/>
+                    android:inputType="numberDecimal"
+                    android:textSize="6sp" />
 
                 <EditText
                     android:id="@+id/ingredient1Unit"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:hint="units"
-                    android:textSize="13sp"/>
+                    android:textSize="13sp" />
 
             </LinearLayout>
 
@@ -152,28 +149,27 @@
                 android:orientation="horizontal">
 
                 <AutoCompleteTextView
-                    android:layout_width="70dp"
-                    android:layout_height="wrap_content"
                     android:id="@+id/ingredient2Name"
-                    android:singleLine="true"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
                     android:hint="ingredient"
-                    android:textSize="13sp"
-                    />
+                    android:singleLine="true"
+                    android:textSize="13sp" />
 
                 <EditText
                     android:id="@+id/ingredient2Amount"
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
                     android:hint="amount"
-                    android:textSize="6sp"/>
+                    android:inputType="numberDecimal"
+                    android:textSize="6sp" />
 
                 <EditText
                     android:id="@+id/ingredient2Unit"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:hint="units"
-                    android:textSize="13sp"/>
+                    android:textSize="13sp" />
 
             </LinearLayout>
 
@@ -183,28 +179,27 @@
                 android:orientation="horizontal">
 
                 <AutoCompleteTextView
-                    android:layout_width="70dp"
-                    android:layout_height="wrap_content"
                     android:id="@+id/ingredient3Name"
-                    android:singleLine="true"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
                     android:hint="ingredient"
-                    android:textSize="13sp"
-                    />
+                    android:singleLine="true"
+                    android:textSize="13sp" />
 
                 <EditText
                     android:id="@+id/ingredient3Amount"
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
                     android:hint="amount"
-                    android:textSize="6sp"/>
+                    android:inputType="numberDecimal"
+                    android:textSize="6sp" />
 
                 <EditText
                     android:id="@+id/ingredient3Unit"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:hint="units"
-                    android:textSize="13sp"/>
+                    android:textSize="13sp" />
 
             </LinearLayout>
 
@@ -214,28 +209,27 @@
                 android:orientation="horizontal">
 
                 <AutoCompleteTextView
-                    android:layout_width="70dp"
-                    android:layout_height="wrap_content"
                     android:id="@+id/ingredient4Name"
-                    android:singleLine="true"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
                     android:hint="ingredient"
-                    android:textSize="13sp"
-                    />
+                    android:singleLine="true"
+                    android:textSize="13sp" />
 
                 <EditText
                     android:id="@+id/ingredient4Amount"
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
                     android:hint="amount"
-                    android:textSize="6sp"/>
+                    android:inputType="numberDecimal"
+                    android:textSize="6sp" />
 
                 <EditText
                     android:id="@+id/ingredient4Unit"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:hint="units"
-                    android:textSize="13sp"/>
+                    android:textSize="13sp" />
 
             </LinearLayout>
 
@@ -245,28 +239,27 @@
                 android:orientation="horizontal">
 
                 <AutoCompleteTextView
-                    android:layout_width="70dp"
-                    android:layout_height="wrap_content"
                     android:id="@+id/ingredient5Name"
-                    android:singleLine="true"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
                     android:hint="ingredient"
-                    android:textSize="13sp"
-                    />
+                    android:singleLine="true"
+                    android:textSize="13sp" />
 
                 <EditText
                     android:id="@+id/ingredient5Amount"
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
                     android:hint="amount"
-                    android:textSize="6sp"/>
+                    android:inputType="numberDecimal"
+                    android:textSize="6sp" />
 
                 <EditText
                     android:id="@+id/ingredient5Unit"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:hint="units"
-                    android:textSize="13sp"/>
+                    android:textSize="13sp" />
 
             </LinearLayout>
 
@@ -276,28 +269,27 @@
                 android:orientation="horizontal">
 
                 <AutoCompleteTextView
-                    android:layout_width="70dp"
-                    android:layout_height="wrap_content"
                     android:id="@+id/ingredient6Name"
-                    android:singleLine="true"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
                     android:hint="ingredient"
-                    android:textSize="13sp"
-                    />
+                    android:singleLine="true"
+                    android:textSize="13sp" />
 
                 <EditText
                     android:id="@+id/ingredient6Amount"
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
                     android:hint="amount"
-                    android:textSize="6sp"/>
+                    android:inputType="numberDecimal"
+                    android:textSize="6sp" />
 
                 <EditText
                     android:id="@+id/ingredient6Unit"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:hint="units"
-                    android:textSize="13sp"/>
+                    android:textSize="13sp" />
 
             </LinearLayout>
 
@@ -307,28 +299,27 @@
                 android:orientation="horizontal">
 
                 <AutoCompleteTextView
-                    android:layout_width="70dp"
-                    android:layout_height="wrap_content"
                     android:id="@+id/ingredient7Name"
-                    android:singleLine="true"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
                     android:hint="ingredient"
-                    android:textSize="13sp"
-                    />
+                    android:singleLine="true"
+                    android:textSize="13sp" />
 
                 <EditText
                     android:id="@+id/ingredient7Amount"
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
                     android:hint="amount"
-                    android:textSize="6sp"/>
+                    android:inputType="numberDecimal"
+                    android:textSize="6sp" />
 
                 <EditText
                     android:id="@+id/ingredient7Unit"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:hint="units"
-                    android:textSize="13sp"/>
+                    android:textSize="13sp" />
 
             </LinearLayout>
 
@@ -338,28 +329,27 @@
                 android:orientation="horizontal">
 
                 <AutoCompleteTextView
-                    android:layout_width="70dp"
-                    android:layout_height="wrap_content"
                     android:id="@+id/ingredient8Name"
-                    android:singleLine="true"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
                     android:hint="ingredient"
-                    android:textSize="13sp"
-                    />
+                    android:singleLine="true"
+                    android:textSize="13sp" />
 
                 <EditText
                     android:id="@+id/ingredient8Amount"
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
                     android:hint="amount"
-                    android:textSize="6sp"/>
+                    android:inputType="numberDecimal"
+                    android:textSize="6sp" />
 
                 <EditText
                     android:id="@+id/ingredient8Unit"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:hint="units"
-                    android:textSize="13sp"/>
+                    android:textSize="13sp" />
 
             </LinearLayout>
 
@@ -369,28 +359,27 @@
                 android:orientation="horizontal">
 
                 <AutoCompleteTextView
-                    android:layout_width="70dp"
-                    android:layout_height="wrap_content"
                     android:id="@+id/ingredient9Name"
-                    android:singleLine="true"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
                     android:hint="ingredient"
-                    android:textSize="13sp"
-                    />
+                    android:singleLine="true"
+                    android:textSize="13sp" />
 
                 <EditText
                     android:id="@+id/ingredient9Amount"
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
                     android:hint="amount"
-                    android:textSize="6sp"/>
+                    android:inputType="numberDecimal"
+                    android:textSize="6sp" />
 
                 <EditText
                     android:id="@+id/ingredient9Unit"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:hint="units"
-                    android:textSize="13sp"/>
+                    android:textSize="13sp" />
 
             </LinearLayout>
 
@@ -400,28 +389,27 @@
                 android:orientation="horizontal">
 
                 <AutoCompleteTextView
-                    android:layout_width="70dp"
-                    android:layout_height="wrap_content"
                     android:id="@+id/ingredient10Name"
-                    android:singleLine="true"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
                     android:hint="ingredient"
-                    android:textSize="13sp"
-                    />
+                    android:singleLine="true"
+                    android:textSize="13sp" />
 
                 <EditText
                     android:id="@+id/ingredient10Amount"
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
                     android:hint="amount"
-                    android:textSize="6sp"/>
+                    android:inputType="numberDecimal"
+                    android:textSize="6sp" />
 
                 <EditText
                     android:id="@+id/ingredient10Unit"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:hint="units"
-                    android:textSize="13sp"/>
+                    android:textSize="13sp" />
 
             </LinearLayout>
 
