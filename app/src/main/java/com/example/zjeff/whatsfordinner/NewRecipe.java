@@ -227,6 +227,17 @@ public class NewRecipe extends AppCompatActivity {
         String ingredient9unit = ingred9unit.getText().toString();
         String ingredient10unit = ingred10unit.getText().toString();
 
+        EditText CaloriesEntry  = (EditText)findViewById(R.id.Calories);
+        EditText CarbohydratesEntry = (EditText)findViewById(R.id.Carbohydrates);
+        EditText VitaminsEntry = (EditText)findViewById(R.id.Vitamins);
+        EditText SugarsEntry = (EditText)findViewById(R.id.Sugar);
+        EditText MineralsEntry = (EditText)findViewById(R.id.Minerals);
+
+        int Calories = Integer.parseInt(CaloriesEntry.getText().toString());
+        int Carbohydrates = Integer.parseInt(CarbohydratesEntry.getText().toString());
+        int Minerals = Integer.parseInt(MineralsEntry.getText().toString());
+        int Vitamins = Integer.parseInt(VitaminsEntry.getText().toString());
+        int Sugars = Integer.parseInt(SugarsEntry.getText().toString());
 
         Ingredient ingredient1 = new Ingredient(ingredient1name, ingredient1amount, ingredient1unit);
         Ingredient ingredient2 = new Ingredient(ingredient2name, ingredient2amount, ingredient2unit);
@@ -285,6 +296,11 @@ public class NewRecipe extends AppCompatActivity {
             return;
         }else {
             RecipeData newRecipe = new RecipeData(recipeName, newRecipeIngredients, description);
+            newRecipe.setCalories(Calories);
+            newRecipe.setCarbohydrates(Carbohydrates);
+            newRecipe.setMinerals(Minerals);
+            newRecipe.setSugars(Sugars);
+            newRecipe.setSugars(Vitamins);
             savedRecipes.add(newRecipe);
             savedIngredients.addAll(newRecipeIngredients);
 

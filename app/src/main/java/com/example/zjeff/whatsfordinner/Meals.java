@@ -14,6 +14,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -48,6 +50,18 @@ public class Meals extends AppCompatActivity{
     Spinner lunchSpinnerSaturday;
     Spinner dinnerSpinnerSaturday;
 
+    public int caloriesResult = 0;
+    public int carbohydratesResult = 0;
+    public int sugarsResult = 0;
+    public int vitaminsResult = 0;
+    public int mineralsResult = 0;
+
+    public int caloriesPlan;
+    public int carbohydratesPlan;
+    public int sugarsPlan;
+    public int vitaminsPlan;
+    public int mineralsPlan;
+
     ArrayList<String> recipeOptionsName;
     ArrayList<RecipeData> recipeOptions;
     RecipeData eatingOut;
@@ -55,6 +69,24 @@ public class Meals extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meals);
+
+        final TextView calories = (TextView)findViewById(R.id.CaloriesResult);
+        final TextView carbohydrates = (TextView)findViewById(R.id.CarbohydratesResult);
+        final TextView sugars = (TextView)findViewById(R.id.SugarsResult);
+        final TextView vitamins = (TextView)findViewById(R.id.VitaminsResult);
+        final TextView minerals = (TextView)findViewById(R.id.MineralsResult);
+
+        final TextView caloriesPlanView = (TextView)findViewById(R.id.CaloriesResult);
+        final TextView carbohydratesPlanView = (TextView)findViewById(R.id.CarbohydratesResult);
+        final TextView sugarsPlanView = (TextView)findViewById(R.id.SugarsResult);
+        final TextView vitaminsPlanView = (TextView)findViewById(R.id.VitaminsResult);
+        final TextView mineralsPlanView = (TextView)findViewById(R.id.MineralsResult);
+
+        caloriesPlan = Integer.parseInt(caloriesPlanView.getText().toString());
+        carbohydratesPlan = Integer.parseInt(carbohydratesPlanView.getText().toString());
+        sugarsPlan = Integer.parseInt(sugarsPlanView.getText().toString());
+        vitaminsPlan = Integer.parseInt(vitaminsPlanView.getText().toString());
+        mineralsPlan = Integer.parseInt(mineralsPlanView.getText().toString());
 
         recipeOptions = new ArrayList<RecipeData>();
         recipeOptionsName = new ArrayList<String>();
@@ -131,10 +163,21 @@ public class Meals extends AppCompatActivity{
             s.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    caloriesResult = caloriesResult + recipeOptions.get(i).getCalories();
+                    carbohydratesResult += recipeOptions.get(i).getCarbohydrates();
+                    sugarsResult += recipeOptions.get(i).getSugars();
+                    vitaminsResult += recipeOptions.get(i).getVitamins();
+                    mineralsResult += recipeOptions.get(i).getMinerals();
+
                     if(!adapterView.getItemAtPosition(i).equals(eatingOut.getName())) {
                         recipeOptionsName.remove(adapterView.getItemAtPosition(i));
                         recipeOptions.remove(i);
                     }
+                    calories.setText(caloriesResult);
+                    carbohydrates.setText(carbohydratesResult);
+                    sugars.setText(sugarsResult);
+                    vitamins.setText(vitaminsResult);
+                    minerals.setText(mineralsResult);
                 }
 
                 @Override

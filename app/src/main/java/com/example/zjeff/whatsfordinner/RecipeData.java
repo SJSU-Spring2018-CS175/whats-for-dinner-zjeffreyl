@@ -11,6 +11,11 @@ public class RecipeData implements Serializable{
     private ArrayList<Ingredient> ingredients;
     private String description;
     private Drawable img;
+    private Integer calories = 0;
+    private Integer carbohydrates = 0;
+    private Integer sugars = 0;
+    private Integer vitamins = 0;
+    private Integer minerals = 0;
 
     public RecipeData(String name, ArrayList<Ingredient> ingredients, String description) {
         this.ingredients = ingredients;
@@ -46,5 +51,41 @@ public class RecipeData implements Serializable{
     public Drawable getImg(){
         return img;
     }
+
+    public void setMinerals(int set){
+        minerals = set;
+    }
+    public void setCalories(int set){
+        calories = set;
+    }
+
+    public void setSugars(int set){
+        sugars = set;
+    }
+
+    public void setCarbohydrates(int set){
+        carbohydrates = set;
+    }
+
+    public void setVitamins(int set){
+        vitamins = set;
+    }
+
+    public int getMinerals(){
+        return minerals;
+    }
+    public int getCalories(){
+        return calories;
+    }
+    public int getCarbohydrates(){
+        return carbohydrates;
+    }
+    public int getVitamins(){
+        return vitamins;
+    }
+    public int getSugars(){
+        return sugars;
+    }
+
 
 }
